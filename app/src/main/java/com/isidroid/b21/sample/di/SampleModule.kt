@@ -1,4 +1,4 @@
-package com.isidroid.b21.di
+package com.isidroid.b21.sample.di
 
 import com.isidroid.b21.sample.clean.network.Api
 import com.isidroid.b21.sample.clean.domain.PostListInteractor

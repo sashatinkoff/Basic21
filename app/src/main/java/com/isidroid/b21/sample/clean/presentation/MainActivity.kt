@@ -20,6 +20,6 @@ class MainActivity : BindActivity(layoutRes = R.layout.activity_main) {
     }
 
     override fun onCreateViewModel() {
-        observe(viewModel.data) { Timber.e("sdfsdfd $it") }
+        observe(viewModel.data) { }
     }
 }

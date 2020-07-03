@@ -14,10 +14,12 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-    private fun <T> httpClient(cl: Class<T>, logLevel: HttpLoggingInterceptor.Level) =
-        OkHttpClient().newBuilder()
+    private fun <T> httpClient(cl: Class<T>, logLevel: HttpLoggingInterceptor.Level): OkHttpClient {
+        val builder = OkHttpClient().newBuilder()
             .addInterceptor(logger(cl = cl, logLevel = logLevel))
-            .build()
+
+        return builder.build()
+    }
 
     private fun <T> logger(cl: Class<T>, logLevel: HttpLoggingInterceptor.Level) =
         HttpLoggingInterceptor(
@@ -34,13 +36,14 @@ class NetworkModule {
         .build()
         .create(cl) as T
 
-   @Singleton @Provides
+    @Singleton @Provides
     fun provideGson(): Gson = GsonBuilder()
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         .setLenient()
         .create()
 
-    @Singleton @Provides fun provideApi(): Api =
+    @Singleton @Provides
+    fun provideApi(): Api =
         api(baseUrl = "https://jsonplaceholder.typicode.com/", cl = Api::class.java)
 
 }

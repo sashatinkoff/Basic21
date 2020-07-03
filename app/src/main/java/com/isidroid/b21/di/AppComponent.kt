@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.isidroid.b21.App
 import com.isidroid.b21.utils.BindActivity
 import com.isidroid.b21.sample.clean.presentation.MainActivity
+import com.isidroid.b21.sample.di.SampleModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
