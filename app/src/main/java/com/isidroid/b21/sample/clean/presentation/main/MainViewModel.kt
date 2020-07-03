@@ -1,4 +1,4 @@
-package com.isidroid.b21.sample.clean.presentation
+package com.isidroid.b21.sample.clean.presentation.main
 
 import androidx.lifecycle.MutableLiveData
 import com.isidroid.b21.utils.CoroutineViewModel

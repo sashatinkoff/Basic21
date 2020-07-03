@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="96dp"
-        tools:context=".sample.clean.presentation.MainActivity">
+        tools:context=".sample.clean.presentation.main.MainActivity">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button"
