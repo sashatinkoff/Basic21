@@ -1,13 +1,16 @@
 package com.isidroid.b21
 
+import android.os.Handler
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor() : ViewModel() {
-    private val uid = UUID.randomUUID().toString().substring(0, 4)
+    var data = MutableLiveData<String>()
+
     fun create(caller: Any) {
-        Timber.i("HJello world $uid from ${caller} $this")
+        Handler().postDelayed({ data.value = "HJelldsf" }, 2_000)
     }
 }

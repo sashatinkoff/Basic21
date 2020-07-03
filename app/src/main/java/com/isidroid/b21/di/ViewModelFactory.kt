@@ -1,9 +1,8 @@
-package com.isidroid.b21.di.viewmodel
+package com.isidroid.b21.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.MapKey
-import java.lang.IllegalStateException
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
