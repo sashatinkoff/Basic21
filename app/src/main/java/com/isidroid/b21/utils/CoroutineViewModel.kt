@@ -1,4 +1,4 @@
-package com.isidroid.b21
+package com.isidroid.b21.utils
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
@@ -37,8 +37,8 @@ abstract class CoroutineViewModel(
             onComplete?.invoke(result!!)
 
         } catch (e: Throwable) {
-            if (!isActive) return@launch
             Timber.e(e)
+            if (!isActive) return@launch
             onError?.invoke(e)
         }
     }

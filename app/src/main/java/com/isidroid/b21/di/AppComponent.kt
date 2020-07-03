@@ -3,7 +3,7 @@ package com.isidroid.b21.di
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.isidroid.b21.App
-import com.isidroid.b21.BindActivity
+import com.isidroid.b21.utils.BindActivity
 import com.isidroid.b21.sample.clean.presentation.MainActivity
 import dagger.BindsInstance
 import dagger.Component

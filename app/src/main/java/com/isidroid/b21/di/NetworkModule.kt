@@ -2,7 +2,7 @@ package com.isidroid.b21.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.isidroid.b21.sample.Api
+import com.isidroid.b21.sample.clean.network.Api
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

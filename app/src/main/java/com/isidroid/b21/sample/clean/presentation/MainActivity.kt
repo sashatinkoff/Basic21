@@ -2,7 +2,7 @@ package com.isidroid.b21.sample.clean.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.isidroid.b21.BindActivity
+import com.isidroid.b21.utils.BindActivity
 import com.isidroid.b21.R
 import com.isidroid.b21.di.appComponent
 import com.isidroid.b21.ext.observe

@@ -1,4 +1,4 @@
-package com.isidroid.b21
+package com.isidroid.b21.utils
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes

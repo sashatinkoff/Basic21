@@ -1,4 +1,4 @@
-package com.isidroid.b21.sample
+package com.isidroid.b21.sample.clean.network
 
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
