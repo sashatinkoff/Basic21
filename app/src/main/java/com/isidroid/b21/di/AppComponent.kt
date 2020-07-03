@@ -7,7 +7,11 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@Singleton @Component(modules = [NetworkModule::class])
+@Singleton @Component(
+    modules = [
+        NetworkModule::class,
+        ViewModelModule::class]
+)
 interface AppComponent {
     @Component.Factory
     interface Factory {
