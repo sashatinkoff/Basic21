@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.isidroid.b21.App
 import com.isidroid.b21.utils.BindActivity
 import com.isidroid.b21.sample.clean.presentation.MainActivity
+import com.isidroid.b21.sample.clean.presentation.MainFragment
 import com.isidroid.b21.sample.di.SampleModule
 import dagger.BindsInstance
 import dagger.Component
@@ -23,8 +24,8 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
-    fun inject(activity: BindActivity)
     fun inject(activity: MainActivity)
+    fun inject(fragment: MainFragment)
 }
 
 fun Context.appComponent() = (applicationContext as App).appComponent

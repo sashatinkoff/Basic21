@@ -14,7 +14,6 @@ abstract class BindActivity(@LayoutRes private val layoutRes: Int) : AppCompatAc
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        appComponent().inject(this)
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRes)
         onCreateViewModel()
