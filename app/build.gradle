@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'realm-android'
 }
 
 android {
@@ -10,7 +11,7 @@ android {
     buildToolsVersion config.buildToolVersion
 
     defaultConfig {
-        applicationId "com.isidroid.b21"
+        applicationId "com.isidroid.b21tracking"
         minSdkVersion config.minSdk
         targetSdkVersion config.targetSdk
 
@@ -96,4 +97,5 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber"
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation 'com.yandex.android:mapkit:3.5.0'
 }
