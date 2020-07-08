@@ -6,7 +6,7 @@ import com.isidroid.b21.sample.SquareOffSdk
 import dagger.Component
 import javax.inject.Singleton
 
-@SdkScope
+@Singleton
 @Component(
     modules = [NetworkModule::class, SampleModule::class]
 )

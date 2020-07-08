@@ -14,7 +14,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@SdkScope @Component(
+@Singleton @Component(
     modules = [
         NetworkModule::class,
         ViewModelModule::class,

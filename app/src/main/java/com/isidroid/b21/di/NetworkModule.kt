@@ -37,13 +37,13 @@ class NetworkModule {
         .build()
         .create(cl) as T
 
-    @SdkScope @Provides
+    @Singleton @Provides
     fun provideGson(): Gson = GsonBuilder()
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         .setLenient()
         .create()
 
-    @SdkScope @Provides
+    @Singleton @Provides
     fun provideApi(): Api =
         api(baseUrl = "https://jsonplaceholder.typicode.com/", cl = Api::class.java)
 

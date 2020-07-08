@@ -2,7 +2,6 @@ package com.isidroid.b21.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.isidroid.b21.sample.di.SdkScope
 import dagger.MapKey
 import javax.inject.Inject
 import javax.inject.Provider
@@ -10,7 +9,7 @@ import javax.inject.Singleton
 import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")
-@SdkScope
+@Singleton
 class ViewModelFactory @Inject constructor(
     private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {

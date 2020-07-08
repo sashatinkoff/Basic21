@@ -17,16 +17,10 @@ class SampleModule {
         Timber.e("PostListIn SampleModule.init")
     }
 
-    @SdkScope @Provides
+    @Singleton @Provides
     fun providePostRepository(api: Api): IPostRepository = PostRepository(api)
 
-    @SdkScope @Provides
+    @Singleton @Provides
     fun providePostLiseUseCase(api: Api): IPostListUseCase =
         PostListInteractor(providePostRepository(api))
-
-    @SdkScope @Singleton
-    fun provideTest(): String {
-        Timber.i("gdfgfgdfgdfgdfg provideTest()")
-        return UUID.randomUUID().toString().substring(0, 5)
-    }
 }

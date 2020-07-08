@@ -8,7 +8,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@SdkScope @Component(modules = [NetworkModule::class, SampleModule::class])
+@Singleton @Component(modules = [NetworkModule::class, SampleModule::class])
 interface PresenterInjector {
     fun inject(presenter: MainPresenter)
 
