@@ -14,13 +14,16 @@ import javax.inject.Inject
 class MainActivity : BindActivity(layoutRes = R.layout.activity_main), IMainView {
     @Inject lateinit var test: Lazy<String>
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
-    private val presenter = MainPresenter(this)
+    private val presenter = MainPresenter(view = this, lifecycle = lifecycle)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         appComponent().inject(this)
         super.onCreate(savedInstanceState)
 
+
         button.setOnClickListener { presenter.posts() }
+        buttonCancel.setOnClickListener { presenter.cancel() }
+        buttonDestroy.setOnClickListener { finish() }
     }
 
     override fun onCreateViewModel() {

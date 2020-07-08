@@ -1,28 +1,25 @@
 package com.isidroid.b21.sample.clean.presentation
 
+import androidx.annotation.CallSuper
+import androidx.lifecycle.Lifecycle
 import com.isidroid.b21.mvp.BasePresenter
 import com.isidroid.b21.sample.network.Api
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import timber.log.Timber
+import java.lang.RuntimeException
 import javax.inject.Inject
 
-class MainPresenter(view: IMainView) : BasePresenter<IMainView>(view) {
+class MainPresenter(view: IMainView, lifecycle: Lifecycle) :
+    BasePresenter<IMainView>(view, lifecycle) {
     @Inject lateinit var api: Api
 
+    fun posts() = io(
+        doBefore = { Timber.i("gdfgfgdfgdfgdfg doBefore") },
+        doWork = {
+            Thread.sleep(5_000)
+            api.list().execute().body()
+        },
+        onComplete = { Timber.i("gdfgfgdfgdfgdfg onComplete ${it?.size}") },
+        onError = { Timber.e("gdfgfgdfgdfgdfg ${it}") }
+    )
 
-    fun posts() {
-        Timber.i("gdfgfgdfgdfgdfg runPosts")
-        GlobalScope.async {
-            Timber.i("gdfgfgdfgdfgdfg async on ${Thread.currentThread().name}")
-            try {
-                val response = api.list().execute()
-                Timber.i("gdfgfgdfgdfgdfg result=${response.body()}")
-            } catch (t: Throwable){
-                Timber.e("gdfgfgdfgdfgdfg ${t.message}")
-            }
-
-        }
-
-    }
 }

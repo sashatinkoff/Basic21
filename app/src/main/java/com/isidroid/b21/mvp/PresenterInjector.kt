@@ -13,6 +13,7 @@ interface PresenterInjector {
     @Component.Builder
     interface Builder {
         fun build(): PresenterInjector
+
         @BindsInstance fun view(view: IBaseView): Builder
     }
 }
