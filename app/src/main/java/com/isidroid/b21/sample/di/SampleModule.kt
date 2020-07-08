@@ -1,6 +1,6 @@
 package com.isidroid.b21.sample.di
 
-import com.isidroid.b21.sample.clean.network.Api
+import com.isidroid.b21.sample.network.Api
 import com.isidroid.b21.sample.clean.domain.PostListInteractor
 import com.isidroid.b21.sample.clean.domain.PostListUseCase
 import com.isidroid.b21.sample.clean.model.IPostRepository

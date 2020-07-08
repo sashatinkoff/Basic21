@@ -11,15 +11,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : BindActivity(layoutRes = R.layout.activity_main) {
+class MainActivity : BindActivity(layoutRes = R.layout.activity_main), IMainView {
     @Inject lateinit var test: Lazy<String>
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
+    private val presenter = MainPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         appComponent().inject(this)
         super.onCreate(savedInstanceState)
 
-        button.setOnClickListener { Timber.i("gdfgfgdfgdfgdfg test ${test.get()}") }
+        button.setOnClickListener { presenter.posts() }
     }
 
     override fun onCreateViewModel() {
