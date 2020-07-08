@@ -2,7 +2,7 @@ package com.isidroid.b21.sample.di
 
 import com.isidroid.b21.sample.network.Api
 import com.isidroid.b21.sample.clean.domain.PostListInteractor
-import com.isidroid.b21.sample.clean.domain.PostListUseCase
+import com.isidroid.b21.sample.clean.domain.IPostListUseCase
 import com.isidroid.b21.sample.clean.model.IPostRepository
 import com.isidroid.b21.sample.clean.model.PostRepository
 import dagger.Module
@@ -13,14 +13,18 @@ import javax.inject.Singleton
 
 @Module
 class SampleModule {
-    @Singleton @Provides
+    init {
+        Timber.e("PostListIn SampleModule.init")
+    }
+
+    @SdkScope @Provides
     fun providePostRepository(api: Api): IPostRepository = PostRepository(api)
 
-    @Singleton @Provides
-    fun providePostLiseUseCase(api: Api): PostListUseCase =
+    @SdkScope @Provides
+    fun providePostLiseUseCase(api: Api): IPostListUseCase =
         PostListInteractor(providePostRepository(api))
 
-    @Provides
+    @SdkScope @Singleton
     fun provideTest(): String {
         Timber.i("gdfgfgdfgdfgdfg provideTest()")
         return UUID.randomUUID().toString().substring(0, 5)

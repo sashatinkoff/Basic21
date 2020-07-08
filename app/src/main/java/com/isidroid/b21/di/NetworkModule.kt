@@ -2,6 +2,7 @@ package com.isidroid.b21.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.isidroid.b21.sample.di.SdkScope
 import com.isidroid.b21.sample.network.Api
 import dagger.Module
 import dagger.Provides
@@ -36,13 +37,13 @@ class NetworkModule {
         .build()
         .create(cl) as T
 
-    @Singleton @Provides
+    @SdkScope @Provides
     fun provideGson(): Gson = GsonBuilder()
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         .setLenient()
         .create()
 
-    @Singleton @Provides
+    @SdkScope @Provides
     fun provideApi(): Api =
         api(baseUrl = "https://jsonplaceholder.typicode.com/", cl = Api::class.java)
 

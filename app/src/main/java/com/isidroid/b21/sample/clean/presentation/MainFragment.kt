@@ -13,7 +13,6 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class MainFragment : BindFragment(layoutRes = R.layout.sample_main_fragment) {
-    @Inject lateinit var test: Lazy<String>
     private val viewModel by activityViewModels<MainViewModel> { viewModelFactory }
 
     override fun onAttach(context: Context) {
@@ -22,6 +21,5 @@ class MainFragment : BindFragment(layoutRes = R.layout.sample_main_fragment) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        button.setOnClickListener { Timber.i("gdfgfgdfgdfgdfg test ${test.get()}") }
     }
 }
