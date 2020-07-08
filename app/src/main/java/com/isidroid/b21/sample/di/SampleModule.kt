@@ -1,5 +1,6 @@
 package com.isidroid.b21.sample.di
 
+import com.isidroid.b21.sample.SquareOffSdk
 import com.isidroid.b21.sample.network.Api
 import com.isidroid.b21.sample.clean.domain.PostListInteractor
 import com.isidroid.b21.sample.clean.domain.IPostListUseCase
@@ -11,7 +12,7 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Singleton
 
-@Module
+@Module(subcomponents = [SdkComponent::class])
 class SampleModule {
     init {
         Timber.e("PostListIn SampleModule.init")
@@ -23,4 +24,8 @@ class SampleModule {
     @Singleton @Provides
     fun providePostLiseUseCase(api: Api): IPostListUseCase =
         PostListInteractor(providePostRepository(api))
+
+    companion object {
+        lateinit var postRepository: IPostRepository
+    }
 }

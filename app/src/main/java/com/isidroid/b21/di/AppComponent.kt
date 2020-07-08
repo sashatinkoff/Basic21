@@ -29,6 +29,7 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(fragment: MainFragment)
+    fun sdkComponent()
 }
 
 

@@ -21,7 +21,7 @@ class MainActivity : BindActivity(layoutRes = R.layout.activity_main), IMainView
         super.onCreate(savedInstanceState)
 
 
-        button.setOnClickListener { Timber.i("button: ${SquareOffSdk.instance.useCase.name}") }
+//        button.setOnClickListener { Timber.i("button: ${SquareOffSdk.instance.useCase.name}") }
         buttonCancel.setOnClickListener {
             val name = presenter.posts()
             Timber.i("cancel: $name")
