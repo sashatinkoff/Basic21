@@ -2,7 +2,6 @@ package com.isidroid.b21.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.isidroid.b21.sample.di.SdkScope
 import com.isidroid.b21.sample.network.Api
 import dagger.Module
 import dagger.Provides

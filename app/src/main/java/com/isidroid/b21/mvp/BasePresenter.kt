@@ -8,9 +8,6 @@ abstract class BasePresenter<out V : IBaseView>(
     protected val lifecycle: Lifecycle
 ) {
     private val coroutine = UiCoroutine(lifecycle)
-    private val injector = DaggerPresenterInjector.builder()
-        .view(view)
-        .build()
 
     init {
         inject()
@@ -32,7 +29,7 @@ abstract class BasePresenter<out V : IBaseView>(
 
     private fun inject() {
         when (this) {
-            is MainPresenter -> injector.inject(this)
+//            is MainPresenter -> injector.inject(this)
         }
     }
 

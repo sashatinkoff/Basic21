@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 class MainPresenter(view: IMainView, lifecycle: Lifecycle) :
     BasePresenter<IMainView>(view, lifecycle) {
-    @Inject lateinit var api: Api
-    @Inject lateinit var postUseCase: IPostListUseCase
-
-    fun posts() = postUseCase.name
+//    @Inject lateinit var api: Api
+//    @Inject lateinit var postUseCase: IPostListUseCase
+//
+//    fun posts() = postUseCase.name
 
 }

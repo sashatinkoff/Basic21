@@ -3,13 +3,9 @@ package com.isidroid.b21.di
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.isidroid.b21.App
-import com.isidroid.b21.sample.SquareOffSdk
-import com.isidroid.b21.utils.BindActivity
 import com.isidroid.b21.sample.clean.presentation.MainActivity
 import com.isidroid.b21.sample.clean.presentation.MainFragment
-import com.isidroid.b21.sample.di.SdkScope
 import com.isidroid.b21.sample.di.SampleModule
-import com.isidroid.b21.sample.di.SdkComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -29,7 +25,6 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(fragment: MainFragment)
-    fun sdkComponent()
 }
 
 
