@@ -69,6 +69,8 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:${swipe_refresh}"
     implementation "androidx.fragment:fragment-ktx:$fragmentktx"
+    implementation "androidx.activity:activity-ktx:$activityx"
+
 
     // Google Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
