@@ -3,8 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
-        id 'com.google.firebase.crashlytics'
-
+    id 'com.google.firebase.crashlytics'
+    id 'realm-android'
 }
 
 android {
