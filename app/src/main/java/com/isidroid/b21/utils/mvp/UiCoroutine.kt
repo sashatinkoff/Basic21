@@ -1,4 +1,4 @@
-package com.isidroid.b21.mvp
+package com.isidroid.b21.utils.mvp
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.isidroid.b21.di.ViewModelFactory
-import com.isidroid.b21.di.appComponent
 import com.isidroid.b21.ext.hideSoftKeyboard
 import javax.inject.Inject
 

@@ -1,6 +1,8 @@
 package com.isidroid.b21
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import com.isidroid.b21.di.DaggerAppComponent
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -14,6 +16,9 @@ class App : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         configureRealm()
+
+        FirebaseApp.initializeApp(this)
+        FirebaseMessaging.getInstance().isAutoInitEnabled = true
     }
 
     private fun configureRealm() {

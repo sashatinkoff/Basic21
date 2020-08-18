@@ -1,10 +1,9 @@
-package com.isidroid.b21.realm
+package com.isidroid.b21.utils.realm
 
 import androidx.annotation.CallSuper
 import io.realm.RealmModel
 import io.realm.kotlin.deleteFromRealm
 import io.realm.kotlin.isManaged
-import timber.log.Timber
 
 interface DataModel : RealmModel {
     @CallSuper

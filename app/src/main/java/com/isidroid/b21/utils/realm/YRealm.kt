@@ -1,4 +1,4 @@
-package com.isidroid.b21.realm
+package com.isidroid.b21.utils.realm
 
 import android.app.Activity
 import android.os.Environment

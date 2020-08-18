@@ -22,6 +22,8 @@ ext {
 
     // firebase
     crashlytics = '17.1.1'
+    firebase_messaging = '20.2.4'
+
 
     // network
     okio = '2.7.0'
