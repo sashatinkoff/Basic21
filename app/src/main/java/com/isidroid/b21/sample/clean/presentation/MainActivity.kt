@@ -1,36 +1,38 @@
 package com.isidroid.b21.sample.clean.presentation
 
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import androidx.activity.viewModels
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.isidroid.b21.BuildConfig
 import com.isidroid.b21.R
 import com.isidroid.b21.di.appComponent
-import com.isidroid.b21.ext.observe
-import com.isidroid.b21.sample.clean.model.PostRepository
 import com.isidroid.b21.utils.BindActivity
-import com.isidroid.b21.utils.UiCoroutine
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
+
 
 class MainActivity : BindActivity(layoutRes = R.layout.activity_main), IMainView {
-    private val viewModel by viewModels<MainViewModel> { viewModelFactory }
-    private val presenter = MainPresenter(view = this, lifecycle = lifecycle)
+    private val uri =
+        Uri.parse("https://stream.mux.com/KpD6DVtWgBVNKmomzkJ4xqc1Ju012EaTCoTqxSCrk9Ac.m3u8")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         appComponent().inject(this)
         super.onCreate(savedInstanceState)
-
-
-        button.setOnClickListener { viewModel.create() }
-        buttonCancel.setOnClickListener { Handler().post { PostRepository.dp() } }
-        buttonDestroy.setOnClickListener {
-            UiCoroutine(lifecycle).io(
-                doWork = { PostRepository.dp() }
-            )
-        }
+        createVideoPlayer()
     }
 
-    override fun onCreateViewModel() {
-        observe(viewModel.data) { }
+    private fun createVideoPlayer() {
+        val player = SimpleExoPlayer.Builder(this).build()
+        playerView.player = player
+        player.playWhenReady = true
+
+        val dataSourceFactory = DefaultDataSourceFactory(this, BuildConfig.APPLICATION_ID)
+        val videoSource = HlsMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+
+        player.prepare(videoSource)
+
     }
+
+
 }
