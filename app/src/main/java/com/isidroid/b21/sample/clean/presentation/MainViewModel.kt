@@ -11,9 +11,7 @@ class MainViewModel @Inject constructor(private val useCase: IPostListUseCase) :
     var data = MutableLiveData<List<Post>>()
 
     fun create() = io(
-        doWork = {
-            useCase.get().apply { cancel() }
-        },
+        doWork = { useCase.get() },
         onComplete = { data.value = it }
     )
 }

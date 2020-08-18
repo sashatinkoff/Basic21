@@ -1,6 +1,7 @@
 package com.isidroid.b21.utils
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
@@ -30,7 +31,7 @@ abstract class CoroutineViewModel(
         doBefore: (() -> Unit)? = null,
         onComplete: ((T) -> Unit)? = null,
         onError: ((Throwable) -> Unit)? = null
-    ) = launch(dispatcher) {
+    ) = viewModelScope.launch(dispatcher) {
         try {
             doBefore?.invoke()
             val result = withContext(jobDispatcher) { doWork() }

@@ -1,11 +1,14 @@
 package com.isidroid.b21.sample.clean.presentation
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.activity.viewModels
 import com.isidroid.b21.R
 import com.isidroid.b21.di.appComponent
 import com.isidroid.b21.ext.observe
+import com.isidroid.b21.sample.clean.model.PostRepository
 import com.isidroid.b21.utils.BindActivity
+import com.isidroid.b21.utils.UiCoroutine
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -18,12 +21,13 @@ class MainActivity : BindActivity(layoutRes = R.layout.activity_main), IMainView
         super.onCreate(savedInstanceState)
 
 
-//        button.setOnClickListener { Timber.i("button: ${SquareOffSdk.instance.useCase.name}") }
-        buttonCancel.setOnClickListener {
-//            val name = presenter.posts()
-//            Timber.i("cancel: $name")
+        button.setOnClickListener { viewModel.create() }
+        buttonCancel.setOnClickListener { Handler().post { PostRepository.dp() } }
+        buttonDestroy.setOnClickListener {
+            UiCoroutine(lifecycle).io(
+                doWork = { PostRepository.dp() }
+            )
         }
-        buttonDestroy.setOnClickListener { finish() }
     }
 
     override fun onCreateViewModel() {
