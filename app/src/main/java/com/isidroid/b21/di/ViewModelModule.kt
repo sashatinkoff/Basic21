@@ -2,7 +2,7 @@ package com.isidroid.b21.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.isidroid.b21.sample.clean.presentation.MainViewModel
+import com.isidroid.b21.clean.presentation.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

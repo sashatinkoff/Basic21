@@ -1,4 +1,4 @@
-package com.isidroid.b21.sample.clean.presentation
+package com.isidroid.b21.clean.presentation
 
 import com.isidroid.b21.mvp.IBaseView
 

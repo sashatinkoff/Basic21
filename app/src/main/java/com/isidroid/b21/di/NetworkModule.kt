@@ -2,7 +2,6 @@ package com.isidroid.b21.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.isidroid.b21.sample.network.Api
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -41,9 +40,5 @@ class NetworkModule {
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         .setLenient()
         .create()
-
-    @Singleton @Provides
-    fun provideApi(): Api =
-        api(baseUrl = "https://jsonplaceholder.typicode.com/", cl = Api::class.java)
 
 }

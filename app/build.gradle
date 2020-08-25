@@ -93,6 +93,7 @@ dependencies {
 
     // firebase
     implementation "com.google.firebase:firebase-crashlytics:$crashlytics"
+    implementation 'com.google.mlkit:face-detection:16.0.1'
 
     // tools
     implementation "com.jakewharton.timber:timber:$timber"
