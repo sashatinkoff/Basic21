@@ -1,7 +1,6 @@
 package com.isidroid.b21.mvp
 
 import androidx.lifecycle.Lifecycle
-import com.isidroid.b21.sample.clean.presentation.MainPresenter
 
 abstract class BasePresenter<out V : IBaseView>(
     protected val view: V,

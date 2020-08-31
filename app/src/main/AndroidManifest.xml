@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Basic21"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.isidroid.b21.sample.clean.presentation.MainActivity">
+        <activity android:name="com.isidroid.b21.sample.clean.presentation.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

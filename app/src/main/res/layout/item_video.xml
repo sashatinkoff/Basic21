@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_margin="12dp">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:keep_content_on_player_reset="true"
+            app:use_controller="false" />
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/posterView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:alpha=".4"
+            android:background="#000"
+            android:fontFamily="sans-serif-light"
+            android:padding="10dp"
+            android:textColor="#FFF"
+            android:textSize="40sp"
+            tools:text="100" />
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
