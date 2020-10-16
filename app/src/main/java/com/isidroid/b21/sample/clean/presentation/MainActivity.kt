@@ -20,14 +20,7 @@ class MainActivity : BindActivity(layoutRes = R.layout.activity_main), IMainView
         appComponent().inject(this)
         super.onCreate(savedInstanceState)
 
-
-        button.setOnClickListener { viewModel.create() }
-        buttonCancel.setOnClickListener { Handler().post { PostRepository.dp() } }
-        buttonDestroy.setOnClickListener {
-            UiCoroutine(lifecycle).io(
-                doWork = { PostRepository.dp() }
-            )
-        }
+        val a = listOf<>()
     }
 
     override fun onCreateViewModel() {
