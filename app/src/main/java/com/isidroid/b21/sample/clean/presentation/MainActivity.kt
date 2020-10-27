@@ -1,29 +1,30 @@
 package com.isidroid.b21.sample.clean.presentation
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.activity.viewModels
+import com.google.gson.Gson
 import com.isidroid.b21.R
 import com.isidroid.b21.di.appComponent
-import com.isidroid.b21.ext.observe
-import com.isidroid.b21.sample.clean.model.PostRepository
 import com.isidroid.b21.utils.BindActivity
-import com.isidroid.b21.utils.UiCoroutine
-import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 class MainActivity : BindActivity(layoutRes = R.layout.activity_main), IMainView {
     private val viewModel by viewModels<MainViewModel> { viewModelFactory }
-    private val presenter = MainPresenter(view = this, lifecycle = lifecycle)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         appComponent().inject(this)
         super.onCreate(savedInstanceState)
 
-        val a = listOf<>()
-    }
+        val extras = with(intent.extras) {
+            this ?: return@with ""
 
-    override fun onCreateViewModel() {
-        observe(viewModel.data) { }
+            val result = mutableMapOf<String, Any?>()
+            keySet().forEach { result[it] = get(it) }
+
+            Gson().toJson(this)
+        }
+
+
+        Timber.i("sdfsdfsdfdsf $extras")
     }
 }
