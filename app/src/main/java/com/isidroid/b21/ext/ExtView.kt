@@ -1,18 +1,11 @@
 package com.isidroid.b21.ext
 
-import android.app.Activity
 import android.graphics.Color
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.*
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
-import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView

@@ -1,8 +1,6 @@
 package com.isidroid.b21.models.settings
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatDelegate
-import java.util.concurrent.TimeUnit
 
 object Settings {
     private val map = SettingsMap()

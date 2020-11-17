@@ -5,9 +5,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.util.TypedValue
 import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.DialogFragment
 import kotlin.math.roundToInt
 
 

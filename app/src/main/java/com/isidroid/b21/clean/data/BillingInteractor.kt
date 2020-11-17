@@ -3,8 +3,6 @@ package clean.data
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
-import android.view.View
-import androidx.core.content.edit
 import com.android.billingclient.api.*
 import com.isidroid.b21.clean.domain.IBillingUseCase
 import timber.log.Timber

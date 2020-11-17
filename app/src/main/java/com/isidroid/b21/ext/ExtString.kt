@@ -1,12 +1,8 @@
 package com.isidroid.b21.ext
 
-import android.text.Spanned
-import android.text.format.DateUtils
 import androidx.core.net.toUri
-import androidx.core.text.HtmlCompat
 import java.security.MessageDigest
 import java.text.DecimalFormat
-import java.util.*
 import java.util.regex.Pattern
 import kotlin.math.ln
 import kotlin.math.log10

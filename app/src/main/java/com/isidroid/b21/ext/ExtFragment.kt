@@ -1,11 +1,9 @@
 package com.isidroid.b21.ext
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import java.io.InvalidClassException
 import java.io.Serializable
 
 fun Fragment.put(key: String, value: Any?) =
