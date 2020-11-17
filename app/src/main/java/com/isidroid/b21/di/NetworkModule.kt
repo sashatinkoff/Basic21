@@ -2,48 +2,65 @@ package com.isidroid.b21.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.isidroid.b21.sample.network.Api
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+private const val REDDIT_API_URL = "https://api.reddit.com/api/v1/"
+private const val REDDIT_URL = "https://www.reddit.com/"
+
 @Module
-class NetworkModule {
-    private fun <T> httpClient(cl: Class<T>, logLevel: HttpLoggingInterceptor.Level): OkHttpClient {
+object NetworkModule {
+    private fun <T> httpClient(
+        cl: Class<T>,
+        logLevel: HttpLoggingInterceptor.Level,
+        redditInterceptor: Interceptor?
+    ): OkHttpClient {
         val builder = OkHttpClient().newBuilder()
-            .addInterceptor(logger(cl = cl, logLevel = logLevel))
+            .readTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+
+        redditInterceptor?.let { builder.addInterceptor(it) }
+        builder.addInterceptor(logger(cl = cl, logLevel = logLevel))
 
         return builder.build()
     }
 
     private fun <T> logger(cl: Class<T>, logLevel: HttpLoggingInterceptor.Level) =
-        HttpLoggingInterceptor(
-            object : HttpLoggingInterceptor.Logger {
-                override fun log(message: String) {
-                    Timber.tag(cl.simpleName).i(message)
-                }
-            }).apply { level = logLevel }
+        HttpLoggingInterceptor { message -> Timber.tag(cl.simpleName).i(message) }
+            .apply { level = logLevel }
 
-    private fun <T> api(baseUrl: String, cl: Class<T>): T = Retrofit.Builder()
-        .client(httpClient(cl = cl, logLevel = HttpLoggingInterceptor.Level.BASIC))
+    private fun <T> api(
+        baseUrl: String = REDDIT_API_URL,
+        cl: Class<T>,
+        logLevel: HttpLoggingInterceptor.Level,
+        authInterceptor: Interceptor? = null
+    ): T = Retrofit.Builder()
+        .client(httpClient(cl = cl, logLevel = logLevel, redditInterceptor = authInterceptor))
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(provideGson()))
         .build()
         .create(cl) as T
 
-    @Singleton @Provides
+    @JvmStatic @Singleton @Provides
     fun provideGson(): Gson = GsonBuilder()
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         .setLenient()
         .create()
 
-    @Singleton @Provides
-    fun provideApi(): Api =
-        api(baseUrl = "https://jsonplaceholder.typicode.com/", cl = Api::class.java)
+//    @JvmStatic @Singleton @Provides
+//    fun provideApiImgur() = api(
+//        baseUrl = "https://api.imgur.com/3/",
+//        cl = ApiImgur::class.java,
+//        logLevel = HttpLoggingInterceptor.Level.BASIC,
+//        authInterceptor = ImgurInterceptor()
+//    )
 
 }

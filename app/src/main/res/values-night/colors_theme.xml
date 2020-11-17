@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryVariant">#1e1e1e</color>
+    <color name="colorSecondaryVariant">#000</color>
+    <color name="bgColor">#050505</color>
+    <color name="ic_launcher_background">#050505</color>
+    <color name="titleColor">#FFF</color>
+    <color name="textColor">#FFF</color>
+    <color name="textColorLink">#e4e4e4</color>
+
+    <!-- DIALOG -->
+    <color name="dialog_background">#232323</color>
+    <color name="dialog_text">#FFF</color>
+    <color name="dialog_checkbox">#e7e7e7</color>
+    <color name="dialog_list_item">#e7e7e7</color>
+    <color name="dialog_button">#B2999999</color>
+    <color name="dialog_corner_light">#0e0e0e</color>
+</resources>

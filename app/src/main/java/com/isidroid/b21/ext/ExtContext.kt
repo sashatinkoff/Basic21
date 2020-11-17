@@ -5,6 +5,8 @@ import android.content.res.Resources
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import kotlin.math.roundToInt
 
 fun Context.resourceFromAttr(@AttrRes attr: Int) = if (attr == 0) 0 else with(TypedValue()) {
@@ -26,3 +28,5 @@ fun Context.dpToPx(dp: Int) =
 fun Context.pxToDp(px: Int) = with(resources.displayMetrics) {
     (px / (xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
 }
+
+fun Context.color(@ColorRes color: Int) = ContextCompat.getColor(this, color)

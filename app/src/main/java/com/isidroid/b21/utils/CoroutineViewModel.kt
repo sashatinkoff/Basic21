@@ -29,13 +29,13 @@ abstract class CoroutineViewModel(
     protected fun <T> io(
         doWork: () -> T,
         doBefore: (() -> Unit)? = null,
-        onComplete: ((T) -> Unit)? = null,
+        onComplete: ((T?) -> Unit)? = null,
         onError: ((Throwable) -> Unit)? = null
     ) = viewModelScope.launch(dispatcher) {
         try {
             doBefore?.invoke()
             val result = withContext(jobDispatcher) { doWork() }
-            onComplete?.invoke(result!!)
+            onComplete?.invoke(result)
 
         } catch (e: Throwable) {
             Timber.e(e)

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.isidroid.b21.R
 
@@ -19,10 +18,17 @@ abstract class CoreBindAdapter<T> : RecyclerView.Adapter<CoreHolder>() {
     protected open val emptyResource: Int = R.layout.item_empty
     protected open val hasInitialLoading = false
     protected var isInserted = false
+    protected var currentPosition = -1
 
     var items = mutableListOf<T>()
 
     fun onLoadMore(callback: (() -> Unit)) = apply { this.loadMoreCallback = callback }
+
+    open fun onDestroy() = apply {}
+    open fun onPause() = apply {}
+    open fun onResume() = apply {
+        if (currentPosition >= 0) notifyItemChanged(currentPosition, currentPosition)
+    }
 
     @CallSuper
     fun add(vararg items: T) = apply {
@@ -111,11 +117,11 @@ abstract class CoreBindAdapter<T> : RecyclerView.Adapter<CoreHolder>() {
         }
     }
 
-    fun update(item: T) {
+    fun update(item: T, isAnimate: Boolean = false) {
         findPosition(item) {
             items[it] = item
             onUpdate(item)
-            notifyItemChanged(it)
+            notifyItemChanged(it, if (isAnimate) null else it)
         }
     }
 
@@ -156,7 +162,7 @@ abstract class CoreBindAdapter<T> : RecyclerView.Adapter<CoreHolder>() {
         }
     }
 
-    fun clear() = apply {
+    @CallSuper open fun clear() = apply {
         isInserted = false
         items.clear()
     }
@@ -168,8 +174,6 @@ abstract class CoreBindAdapter<T> : RecyclerView.Adapter<CoreHolder>() {
 
         onReset()
         notifyDataSetChanged()
-
-        loadMore()
     }
 
     // Open and abstract functions
@@ -187,6 +191,14 @@ abstract class CoreBindAdapter<T> : RecyclerView.Adapter<CoreHolder>() {
 
     open fun onUpdate(item: T) {}
     open fun onRemove(item: T) {}
+    open fun onActive(position: Int) {
+        if (position == currentPosition || position < 0) return
+        val oldPosition = currentPosition
+        currentPosition = position
+
+        notifyItemChanged(position, position)
+        notifyItemChanged(oldPosition, oldPosition)
+    }
 
     companion object {
         const val VIEW_TYPE_NORMAL = 0
@@ -204,25 +216,6 @@ abstract class CoreBindAdapter<T> : RecyclerView.Adapter<CoreHolder>() {
 
     open class CoreEmptyHolder(b: ViewDataBinding) : CoreBindHolder<String, ViewDataBinding>(b) {
         override fun onBind(item: String) {}
-    }
-
-    class DiffCallback<T>(
-        private val itemsBefore: List<T>,
-        private val itemsAfter: List<T>
-    ) : DiffUtil.Callback() {
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return try {
-                itemsBefore[oldItemPosition] != itemsAfter[oldItemPosition]
-            } catch (e: Exception) {
-                false
-            }
-        }
-
-        override fun getOldListSize() = itemsBefore.size
-        override fun getNewListSize() = itemsAfter.size
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            areItemsTheSame(oldItemPosition, newItemPosition)
     }
 }
 

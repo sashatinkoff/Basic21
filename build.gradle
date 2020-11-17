@@ -12,7 +12,6 @@ buildscript {
         classpath "io.realm:realm-gradle-plugin:$realm"
         classpath "com.google.gms:google-services:$gms_google_servivces"
         classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlytics_plugin"
-
     }
 }
 
@@ -20,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 

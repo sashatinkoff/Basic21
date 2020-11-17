@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Basic21</string>
+    <string name="app_name">B21</string>
+    <string name="label_press_back_again_to_close">Press back again to exit app</string>
 </resources>

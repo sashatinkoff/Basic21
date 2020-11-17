@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">@color/accentColor</color>
+    <color name="accentColor">#FF0544</color>
+    <color name="colorSecondary">#1A54E9</color>
+    <color name="accentColorDark">#A8032C</color>
+    <color name="dialog_tint">#BF161616</color>
+    <color name="black">#000</color>
+
+    <!-- DIALOG -->
+    <color name="dialog_buttons_color">#C62828</color>
+    <color name="dialog_checkbox_activated">#FF0000</color>
+    <color name="dialog_accent_button">#10558D</color>
+
 </resources>

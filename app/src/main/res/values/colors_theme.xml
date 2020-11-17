@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryVariant">#E1E1E1</color>
+    <color name="colorSecondaryVariant">#FFF</color>
+    <color name="bgColor">#FAFAFA</color>
+    <color name="ic_launcher_background">#FAFAFA</color>
+    <color name="titleColor">#000</color>
+    <color name="textColor">#000</color>
+    <color name="textColorLink">#1B1B1B</color>
+    <color name="bg_card">#FFF</color>
+    <color name="card_border">#0D000000</color>
+    <color name="subtitleColor">#CC000000</color>
+    <color name="textColor50">#000000</color>
+    <color name="selection">#0CFF0000</color>
+    <color name="bg_bottom_navigation">#FFF</color>
+    <color name="slideshow_bottom_icon">#80000000</color>
+    <color name="comments_container_border">#0D000000</color>
+    <color name="bg_input">#0D20272B</color>
+    <color name="bg_tuner">#1A000000</color>
+    <color name="button_tune_filled">#000</color>
+    <color name="hint">#737373</color>
+    <color name="divider">#73000000</color>
+    <color name="bg_gallery_button">#80000000</color>
+    <color name="bg_section_title">#000000</color>
+    <color name="section_text">#FFF</color>
+    <color name="bg_post_flair">#E4E3E3</color>
+    <color name="post_flair_text">#000</color>
+    <color name="bottom_navigation_icon">#414141</color>
+    <color name="textColorInverted">#FFF</color>
+
+
+    <!-- DIALOG -->
+    <color name="dialog_background">#FAFAFA</color>
+    <color name="dialog_text">#000</color>
+    <color name="dialog_checkbox">#181818</color>
+    <color name="dialog_list_item">#181818</color>
+    <color name="dialog_button">#B2666666</color>
+    <color name="dialog_corner_light">#F1F1F1</color>
+</resources>
