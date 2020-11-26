@@ -16,7 +16,27 @@
         <item name="android:textColorLink">@color/textColorLink</item>
         <item name="android:windowBackground">@color/bgColor</item>
         <item name="android:colorBackground">@color/bgColor</item>
+
+        <item name="android:fontFamily">@font/proxima</item>
+        <item name="fontFamily">@font/proxima</item>
+
     </style>
 
     <style name="FullScreenDialogStyle" parent="Theme.AppCompat.DayNight.Dialog" />
+
+    <style name="TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
