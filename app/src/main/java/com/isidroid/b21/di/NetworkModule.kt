@@ -2,6 +2,7 @@ package com.isidroid.b21.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.isidroid.b21.network.ApiChat
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -34,7 +35,9 @@ object NetworkModule {
     }
 
     private fun <T> logger(cl: Class<T>, logLevel: HttpLoggingInterceptor.Level) =
-        HttpLoggingInterceptor { message -> Timber.tag(cl.simpleName).i(message) }
+        HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
+            Timber.tag(cl.simpleName).i(message)
+        })
             .apply { level = logLevel }
 
     private fun <T> api(
@@ -49,18 +52,21 @@ object NetworkModule {
         .build()
         .create(cl) as T
 
-    @JvmStatic @Singleton @Provides
+    @JvmStatic
+    @Singleton
+    @Provides
     fun provideGson(): Gson = GsonBuilder()
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         .setLenient()
         .create()
 
-//    @JvmStatic @Singleton @Provides
-//    fun provideApiImgur() = api(
-//        baseUrl = "https://api.imgur.com/3/",
-//        cl = ApiImgur::class.java,
-//        logLevel = HttpLoggingInterceptor.Level.BASIC,
-//        authInterceptor = ImgurInterceptor()
-//    )
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideApiChat() = api(
+        baseUrl = "https://fcm.googleapis.com/fcm/",
+        cl = ApiChat::class.java,
+        logLevel = HttpLoggingInterceptor.Level.BODY
+    )
 
 }

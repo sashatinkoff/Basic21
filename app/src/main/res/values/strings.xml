@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">B21</string>
+    <string name="app_name">FireChat</string>
     <string name="label_press_back_again_to_close">Press back again to exit app</string>
+    <string name="action_sign_in">Sign in and open chat</string>
+    <string name="hint_name">Enter you name</string>
+    <string name="helper_name">This data will be sent only in Firebase pushes and won\'t be saved anywhere</string>
+    <string name="hint_message">Share your thoughts...</string>
+    <string name="action_leave">Leave this chat room</string>
 </resources>

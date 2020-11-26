@@ -13,7 +13,7 @@ android {
     buildToolsVersion config.buildToolVersion
 
     defaultConfig {
-        applicationId "com.isidroid.b21"
+        applicationId "com.isidroid.firechat"
         minSdkVersion config.minSdk
         targetSdkVersion config.targetSdk
 
@@ -74,7 +74,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragmentktx"
     implementation "androidx.activity:activity-ktx:$activityx"
     implementation "androidx.preference:preference-ktx:$preferences"
-    implementation "com.android.billingclient:billing:$billing"
+//    implementation "com.android.billingclient:billing:$billing"
 
     // Google Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -99,7 +99,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber"
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.github.bumptech.glide:glide:$glide"
-    implementation "com.github.chrisbanes:PhotoView:$photoview"
+//    implementation "com.github.chrisbanes:PhotoView:$photoview"
 
     kapt "com.github.bumptech.glide:compiler:$glide"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

@@ -56,5 +56,5 @@ class App : Application() {
 
 val Context.appComponent
     get() = (applicationContext as App).appComponent
-val Fragment.appComponentx
+val Fragment.appComponent
     get() = requireActivity().appComponent

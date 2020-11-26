@@ -1,6 +1,9 @@
 package com.isidroid.b21.di
 
 import android.content.Context
+import com.isidroid.b21.clean.presentation.chat.ChatFragment
+import com.isidroid.b21.clean.presentation.login.LoginFragment
+import com.isidroid.b21.clean.presentation.main.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -15,6 +18,9 @@ import javax.inject.Singleton
     ]
 )
 interface AppComponent {
+    fun inject(mainActivity: MainActivity)
+    fun inject(fragment: LoginFragment)
+    fun inject(fragment: ChatFragment)
 
     @Component.Factory
     interface Factory {

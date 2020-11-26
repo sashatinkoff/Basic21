@@ -12,4 +12,8 @@ object Settings {
     var sessionKey: String?
         get() = map.string(SettingId.SESSION_KEY, null)
         set(value) = map.save(SettingId.SESSION_KEY, value)
+
+    var firebaseToken: String?
+        get() = map.string(SettingId.FIREBASE_TOKEN, null)
+        set(value) = map.save(SettingId.FIREBASE_TOKEN, value)
 }
