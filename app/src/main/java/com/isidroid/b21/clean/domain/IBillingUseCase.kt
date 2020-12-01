@@ -8,9 +8,9 @@ import androidx.annotation.CallSuper
 interface IBillingUseCase {
     val skuNamePremium: String
     val allDetails: MutableSet<Sku>
+    val listeners: MutableSet<Listener>
     var isPremium: Boolean
     var isReady: Boolean
-    val listeners: MutableSet<Listener>
 
     fun create(context: Context): IBillingUseCase
 

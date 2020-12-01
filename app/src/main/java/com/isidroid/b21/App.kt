@@ -37,20 +37,12 @@ class App : Application() {
     private fun createRealm() {
         Realm.init(this)
         val config = RealmConfiguration.Builder()
-            .name("db_reddit.realm")
+            .name("database.realm")
             .schemaVersion(1L)
             .deleteRealmIfMigrationNeeded()
 
         // config.migration(migration)
         Realm.setDefaultConfiguration(config.build())
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-    }
-
-    override fun onTrimMemory(level: Int) {
-        super.onTrimMemory(level)
     }
 }
 

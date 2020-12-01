@@ -3,7 +3,7 @@ package com.isidroid.b21.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import clean.data.BillingInteractor
+import com.isidroid.b21.clean.data.BillingInteractor
 import com.isidroid.b21.clean.domain.IBillingUseCase
 import dagger.Module
 import dagger.Provides

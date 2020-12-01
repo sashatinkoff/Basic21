@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryVariant">#1e1e1e</color>
-    <color name="colorSecondaryVariant">#000</color>
-    <color name="bgColor">#050505</color>
-    <color name="ic_launcher_background">#050505</color>
-    <color name="titleColor">#FFF</color>
-    <color name="textColor">#FFF</color>
-    <color name="textColorLink">#e4e4e4</color>
+    <color name="colorBackground">#000</color>
+    <color name="colorSurface">#000</color>
+    <color name="colorOnPrimary">#000</color>
+    <color name="colorOnSecondary">#FFF</color>
+    <color name="colorOnBackground">#FFF</color>
+    <color name="colorOnSurface">#FFF</color>
 
     <!-- DIALOG -->
     <color name="dialog_background">#232323</color>

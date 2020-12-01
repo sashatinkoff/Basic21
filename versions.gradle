@@ -24,7 +24,7 @@ ext {
     annotationsX = '1.1.0'
     preferences = '1.1.1'
     flexbox = '2.0.1'
-    billing = '3.0.1'
+    billing = '3.0.2'
 
     // firebase
     crashlytics = '17.3.0'
