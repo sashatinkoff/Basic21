@@ -6,13 +6,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 
-fun <T> AppCompatActivity.observe(data: LiveData<T>, callback: (T) -> Unit) {
+fun <T> AppCompatActivity.observe(data: MutableLiveData<T>, callback: (T) -> Unit) {
     data.observe(this, Observer { callback(it) })
 }
 
-fun <T> Fragment.observe(data: LiveData<T>, callback: (T) -> Unit) {
+fun <T> Fragment.observe(data: MutableLiveData<T>, callback: (T) -> Unit) {
     data.observe(this, Observer { callback(it) })
 }
 
