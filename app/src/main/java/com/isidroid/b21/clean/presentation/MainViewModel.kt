@@ -1,13 +1,17 @@
 package com.isidroid.b21.clean.presentation
 
 import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.auth.api.phone.SmsRetriever
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.isidroid.b21.clean.domain.ISessionUseCase
 import com.isidroid.b21.utils.CoroutineViewModel
 import timber.log.Timber
 import javax.inject.Inject
+
 
 class MainViewModel @Inject constructor(
     private val sessionUseCase: ISessionUseCase
@@ -23,10 +27,17 @@ class MainViewModel @Inject constructor(
     private var resendingToken: PhoneAuthProvider.ForceResendingToken? = null
     private var verificationId: String? = null
 
+    fun startSmsRetreiver(context: Context) = io(
+        doWork = {
+            val client = SmsRetriever.getClient(context)
+            with(client.startSmsRetriever()) { Tasks.await(this) }
+        },
+        onComplete = { state.value = State.OnInfo("SmsRetriever started $it") },
+        onError = { state.value = State.OnError(it) }
+    )
+
     fun requestCode(activity: Activity, phone: String, reset: Boolean) {
         if (reset) resendingToken = null
-
-        FirebaseAuth.getInstance().firebaseAuthSettings.setAppVerificationDisabledForTesting(true)
 
         val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(p0: PhoneAuthCredential) {
@@ -62,4 +73,6 @@ class MainViewModel @Inject constructor(
         onComplete = { state.value = State.OnComplete(it!!) },
         onError = { state.value = State.OnError(it) }
     )
+
+
 }

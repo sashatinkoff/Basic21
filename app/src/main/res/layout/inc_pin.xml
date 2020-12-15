@@ -26,6 +26,7 @@
                 android:layout_height="44dp"
                 android:gravity="center"
                 android:maxLength="1"
+                android:inputType="number"
                 android:padding="0dp"
                 tools:text="2" />
         </com.google.android.material.textfield.TextInputLayout>

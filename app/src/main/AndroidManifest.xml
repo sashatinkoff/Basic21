@@ -39,5 +39,15 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <receiver
+            android:name=".clean.presentation.SmsReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.phone.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>

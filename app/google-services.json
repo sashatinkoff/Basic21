@@ -44,6 +44,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "389000823373-8v8ib4jumo2hq33e9cs50aoe4n535rtb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isidroid.b21",
+            "certificate_hash": "8c53935e963e9403fef392950c22f1a66a22028c"
+          }
+        },
+        {
+          "client_id": "389000823373-umtdm4eu9c0l8b2q3g1k5s2orokd983q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isidroid.b21",
+            "certificate_hash": "213ec4a8d6efb2557f4c697351e31826875d18e3"
+          }
+        },
+        {
+          "client_id": "389000823373-vt259esluhtqhep0badetn41qbc63ffi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isidroid.b21",
+            "certificate_hash": "830c0219c9b809a00d4dfc15063b77c842a8f7f8"
+          }
+        },
+        {
           "client_id": "389000823373-7cvv32ibi47l2qe2s172l3japdagoto4.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -185,6 +209,64 @@
         "mobilesdk_app_id": "1:389000823373:android:fa21889538e78d2b385204",
         "android_client_info": {
           "package_name": "com.isidroid.reddit.stage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389000823373-7cvv32ibi47l2qe2s172l3japdagoto4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKVuNnzs0JK_78l4l9yz2VLqzwOkp5y0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389000823373-7cvv32ibi47l2qe2s172l3japdagoto4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389000823373:android:eb02cf805a9fede0385204",
+        "android_client_info": {
+          "package_name": "com.isidroid.telegram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389000823373-7cvv32ibi47l2qe2s172l3japdagoto4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKVuNnzs0JK_78l4l9yz2VLqzwOkp5y0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389000823373-7cvv32ibi47l2qe2s172l3japdagoto4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389000823373:android:1bdb7e6155f6c86b385204",
+        "android_client_info": {
+          "package_name": "com.tickeron.app"
         }
       },
       "oauth_client": [

@@ -16,6 +16,10 @@ class SessionInteractor : ISessionUseCase {
         resendingToken: PhoneAuthProvider.ForceResendingToken?,
         callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     ) {
+        auth.firebaseAuthSettings.setAppVerificationDisabledForTesting(false)
+        auth.firebaseAuthSettings.forceRecaptchaFlowForTesting(true)
+        auth.setLanguageCode("ru")
+
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phone)
             .setTimeout(60L, TimeUnit.SECONDS)

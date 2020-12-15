@@ -1,13 +1,16 @@
 package com.isidroid.b21.clean.presentation
 
 import android.annotation.SuppressLint
+import android.content.IntentFilter
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
+import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.internal.RecaptchaActivity
 import com.isidroid.b21.R
 import com.isidroid.b21.appComponent
 import com.isidroid.b21.ext.enable
@@ -16,7 +19,7 @@ import com.isidroid.b21.ext.observe
 import com.isidroid.b21.utils.core.BindActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
-import java.lang.StringBuilder
+
 
 @SuppressLint("SetTextI18n")
 class MainActivity : BindActivity(layoutRes = R.layout.activity_main) {
@@ -37,9 +40,17 @@ class MainActivity : BindActivity(layoutRes = R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         phoneInput.setText("+79028391999")
-        phoneInput.setText("+75555555555")
+//        phoneInput.setText("+75555555555")
 
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION)
+        registerReceiver( SmsReceiver(), intentFilter)
 
+        createForm()
+        viewModel.startSmsRetreiver(this)
+    }
+
+    private fun createForm() {
         inputs.forEachIndexed { index, view ->
             try {
                 inputs[index + 1]
@@ -72,6 +83,7 @@ class MainActivity : BindActivity(layoutRes = R.layout.activity_main) {
         viewModel.confirm(builder.toString())
     }
 
+    // LiveData
     override fun onCreateViewModel() {
         observe(viewModel.state) { state ->
             when (state) {
@@ -101,7 +113,7 @@ class MainActivity : BindActivity(layoutRes = R.layout.activity_main) {
         onInfo(t.message)
     }
 
-    private fun onInfo(message: String?) {
+    fun onInfo(message: String?) {
         message ?: return
         Timber.i("onInfoReceived $message")
 
