@@ -10,7 +10,7 @@ import androidx.annotation.RequiresApi
 
 
 class NotificationsChannels(private val context: Context) {
-    private val DEFAULT_SOUND = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+    private val defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) create()
@@ -38,7 +38,7 @@ class NotificationsChannels(private val context: Context) {
             lightColor = Color.BLUE
             enableVibration(true)
             setShowBadge(true)
-            setSound(DEFAULT_SOUND, null)
+            setSound(defaultSound, null)
             vibrationPattern = longArrayOf(100L, 200L, 300L, 400L, 500L, 400L, 300L, 200L, 400L)
         }
     }
@@ -62,7 +62,7 @@ class NotificationsChannels(private val context: Context) {
     }
 
     companion object {
-        const val DEFAULT_CHANNEL = "Default channel"
+        const val DEFAULT_CHANNEL = "default_channel"
         const val DOWNLOAD = "Download channel"
     }
 }
