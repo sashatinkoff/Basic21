@@ -1,0 +1,91 @@
+{
+  "data": {
+    "id": "60056351def5867ba673e622",
+    "name": "Все типы блоков",
+    "author_name": "Sasha T. Android",
+    "logo_url": "https://media.dev.7skills.com/files/60056350ef945906bb61a244",
+    "description": null,
+    "content": "<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Title</title>\n    <link href=\"https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i&display=swap\" rel=\"stylesheet\">\n</head>\n<body>\n<style>\n    body,*,*:before,*:after{color:#1c1c1c;box-sizing:border-box;font-family:'Roboto',sans-serif}body{font-size:17px;line-height:26px;padding-left:20px;padding-right:20px;width:100%;margin:0}h1,h1 *{font-weight:500;font-size:26px;line-height:30px;color:#1c1c1c!important;margin-top:10px;margin-bottom:20px}img{max-width:100%!important;height:auto!important;display:block;margin-left:auto;margin-right:auto}p{margin-top:10px;margin-bottom:10px}h2,h2 *{font-weight:500;font-size:22px;line-height:30px;color:#1c1c1c;margin-top:20px;margin-bottom:10px}.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}.quill-better-table-wrapper{overflow-x:auto}.quill-better-table-wrapper table{width:100%!important}ol li{margin-bottom:10px}ol{padding-left:50px;padding-right:10px}li[data-list=\"bullet\"]{padding-left:1.5em;list-style-type:none;position:relative}li[data-list=\"bullet\"] .ql-ui{position:absolute}li[data-list=\"bullet\"] .ql-ui:before{content:\"\\2022\";display:inline-block;margin-left:-1.5em;margin-right:.3em;text-align:right;white-space:nowrap;width:1.2em}li[data-list=\"ordered\"]{padding-left:1.5em;list-style-type:none;position:relative}li[data-list=\"ordered\"] .ql-ui{position:absolute}li[data-list=\"ordered\"] .ql-ui:before{content:counter(item) \". \";counter-increment:item;display:inline-block;margin-left:-1.5em;margin-right:.3em;text-align:right;white-space:nowrap;width:1.2em}ol,ul{counter-reset:item}strong,b{font-weight:500}blockquote{font-style:italic}a{text-decoration:none;color:#266C92!important}\n</style>\n\n<h2>Заголовок как он есть.</h2><p>Просто параграф, что бы это ни значило</p><ol><li>Пронумерованный список, пункт один</li><li>Пункт номер два</li></ol><blockquote>\n                <p>Хорошее начинается с большого, а кружка начинается с чайника</p>\n                <footer>Никто и никак</footer>\n            </blockquote><p class=\"block block-image\">\n                <img src=\"https://media.dev.7skills.com/files/60056306ef945906bb61a242\" alt=\"Небольшое описание фотки\" class=\"block-image__content\"/>\n                <span class=\"block-image__caption\">Небольшое описание фотки</span>\n            </p>\n                <div class=\"block-highlight block-highlight_blue\">\n                    <div class=\"block-highlight__title\">Врезка верх</div>\n                    <div class=\"block-highlight__text\">Врезка ниже</div>\n                </div>\n            \n            <div class=\"block-video\">\n                <div class=\"video-responsive\">\n                    <iframe class=\"video\" width=\"580\" height=\"320\" src=\"https://www.youtube.com/embed/k9Qu4eO91nA\" frameborder=\"0\" allowfullscreen></iframe>\n                </div>\n                <div class=\"block-video__caption\">просто какое-то видео</div>\n            </div>\n\n</body>\n\n</html>\n",
+    "category_name": null,
+    "created_at": "2021-01-18T10:30:41.000000Z",
+    "time_publish": "2021-01-18T10:30:41+00:00",
+    "is_favorite": false,
+    "has_right_edit": true,
+    "slug": "vse-tipy-blokov",
+    "views_count": 2,
+    "editor_content": {
+      "time": 1610965814184,
+      "blocks": [
+        {
+          "type": "header",
+          "data": {
+            "text": "Заголовок как он есть.",
+            "level": 2
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "Просто параграф, что бы это ни значило"
+          }
+        },
+        {
+          "type": "list",
+          "data": {
+            "style": "ordered",
+            "items": [
+              "Пронумерованный список, пункт один",
+              "Пункт номер два"
+            ]
+          }
+        },
+        {
+          "type": "quote",
+          "data": {
+            "text": "Хорошее начинается с большого, а кружка начинается с чайника",
+            "caption": "Никто и никак",
+            "alignment": "left"
+          }
+        },
+        {
+          "type": "image",
+          "data": {
+            "file": {
+              "url": "https://media.dev.7skills.com/files/60056306ef945906bb61a242"
+            },
+            "caption": "Небольшое описание фотки",
+            "withBorder": false,
+            "stretched": false,
+            "withBackground": false
+          }
+        },
+        {
+          "type": "highlight",
+          "data": {
+            "text": "Врезка ниже",
+            "title": "Врезка верх",
+            "color": "blue"
+          }
+        },
+        {
+          "type": "embed",
+          "data": {
+            "service": "youtube",
+            "source": "https://www.youtube.com/watch?v=k9Qu4eO91nA",
+            "embed": "https://www.youtube.com/embed/k9Qu4eO91nA",
+            "width": 580,
+            "height": 320,
+            "caption": "просто какое-то видео"
+          }
+        }
+      ],
+      "version": "2.19.0"
+    },
+    "setting": {
+      "date_placement_type": null,
+      "mobile_view_type": "fill_full",
+      "time_start": null,
+      "time_end": null
+    }
+  }
+}
