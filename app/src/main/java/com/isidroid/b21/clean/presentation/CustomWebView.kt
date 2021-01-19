@@ -3,14 +3,20 @@ package com.isidroid.b21.clean.presentation
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.util.AttributeSet
 import android.util.Base64
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.isidroid.b21.R
+import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_fullscreen.view.*
 
 private const val MAX_CLICK_DURATION = 200
 private const val IMAGE_TYPE = 5
@@ -23,6 +29,8 @@ class CustomWebView @JvmOverloads constructor(
     var onClick: ((String?) -> Unit)? = null
 
     private var startClickTime: Long = 0
+    private var imageViewer: StfalconImageViewer<String>? = null
+
 
     init {
         create()
@@ -79,10 +87,28 @@ class CustomWebView @JvmOverloads constructor(
     override fun onClick(view: View?) {
         val hr = hitTestResult
         try {
-            if (hr.type == IMAGE_TYPE) onClick?.invoke(hr.extra)
+            if (hr.type == IMAGE_TYPE) onClick?.invoke(hr.extra) ?: showImage(hr.extra)
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun showImage(url: String?) {
+        imageViewer = StfalconImageViewer.Builder(context, listOf(url.orEmpty())) { view, url ->
+            Glide.with(view).load(url).into(view)
+        }
+            .withBackgroundColor(Color.BLACK)
+            .withHiddenStatusBar(true)
+            .allowZooming(true)
+            .allowSwipeToDismiss(true)
+            .withOverlayView(
+                LayoutInflater.from(context)
+                    .inflate(R.layout.dialog_fullscreen, null, false)
+                    .apply { buttonClose.setOnClickListener { imageViewer?.close() } }
+            ).build()
+
+
+        imageViewer?.show()
     }
 
     // View.OnTouchListener
