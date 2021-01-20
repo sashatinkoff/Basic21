@@ -112,11 +112,15 @@ class CustomWebView @JvmOverloads constructor(
         var src: String? = null
         while (m.find()) {
             quote = m.group(1)
-            src =
-                if (quote == null || quote.trim { it <= ' ' }.isEmpty())
-                    m.group(2).split("//s+")[0] else m.group(2)
+            try {
+                src =
+                    if (quote == null || quote.trim { it <= ' ' }.isEmpty())
+                        m.group(2).split("//s+")[0] else m.group(2)
 
-            src?.also { images.add(it) }
+                src?.also { images.add(it) }
+            } catch (t: Throwable) {
+
+            }
         }
     }
 
@@ -135,8 +139,8 @@ class CustomWebView @JvmOverloads constructor(
 
         val list: List<String>
         val position = images.indexOf(url).let {
-            list = if(it >= 0) images else listOf(url)
-            if(it < 0) 0 else it
+            list = if (it >= 0) images else listOf(url)
+            if (it < 0) 0 else it
         }
 
         imageViewer = StfalconImageViewer.Builder(context, list) { view, url ->
