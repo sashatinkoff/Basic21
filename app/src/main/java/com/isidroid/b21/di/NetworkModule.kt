@@ -15,7 +15,7 @@ import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-private const val BASE_API_URL = "https://domain.com/api/v1/"
+private const val BASE_API_URL = "https://www.instagram.com/"
 
 @Module
 object NetworkModule {

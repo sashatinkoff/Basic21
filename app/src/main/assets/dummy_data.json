@@ -5,7 +5,7 @@
     "author_name": "Sasha T. Android",
     "logo_url": "https://media.dev.7skills.com/files/60056350ef945906bb61a244",
     "description": null,
-    "content": "<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Title</title>\n    <link href=\"https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i&display=swap\" rel=\"stylesheet\">\n</head>\n<body>\n<style>\n    body,*,*:before,*:after{color:#1c1c1c;box-sizing:border-box;font-family:'Roboto',sans-serif}body{font-size:17px;line-height:26px;padding-left:20px;padding-right:20px;width:100%;margin:0}h1,h1 *{font-weight:500;font-size:26px;line-height:30px;color:#1c1c1c!important;margin-top:10px;margin-bottom:20px}img{max-width:100%!important;height:auto!important;display:block;margin-left:auto;margin-right:auto}p{margin-top:10px;margin-bottom:10px}h2,h2 *{font-weight:500;font-size:22px;line-height:30px;color:#1c1c1c;margin-top:20px;margin-bottom:10px}.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}.quill-better-table-wrapper{overflow-x:auto}.quill-better-table-wrapper table{width:100%!important}ol li{margin-bottom:10px}ol{padding-left:50px;padding-right:10px}li[data-list=\"bullet\"]{padding-left:1.5em;list-style-type:none;position:relative}li[data-list=\"bullet\"] .ql-ui{position:absolute}li[data-list=\"bullet\"] .ql-ui:before{content:\"\\2022\";display:inline-block;margin-left:-1.5em;margin-right:.3em;text-align:right;white-space:nowrap;width:1.2em}li[data-list=\"ordered\"]{padding-left:1.5em;list-style-type:none;position:relative}li[data-list=\"ordered\"] .ql-ui{position:absolute}li[data-list=\"ordered\"] .ql-ui:before{content:counter(item) \". \";counter-increment:item;display:inline-block;margin-left:-1.5em;margin-right:.3em;text-align:right;white-space:nowrap;width:1.2em}ol,ul{counter-reset:item}strong,b{font-weight:500}blockquote{font-style:italic}a{text-decoration:none;color:#266C92!important}\n</style>\n\n<h2>Заголовок как он есть.</h2><p>Просто параграф, что бы это ни значило</p><ol><li>Пронумерованный список, пункт один</li><li>Пункт номер два</li></ol><blockquote>\n                <p>Хорошее начинается с большого, а кружка начинается с чайника</p>\n                <footer>Никто и никак</footer>\n            </blockquote><p class=\"block block-image\">\n                <img src=\"https://media.dev.7skills.com/files/60056306ef945906bb61a242\" alt=\"Небольшое описание фотки\" class=\"block-image__content\"/>\n                <span class=\"block-image__caption\">Небольшое описание фотки</span>\n            </p>\n                <div class=\"block-highlight block-highlight_blue\">\n                    <div class=\"block-highlight__title\">Врезка верх</div>\n                    <div class=\"block-highlight__text\">Врезка ниже</div>\n                </div>\n            \n            <div class=\"block-video\">\n                <div class=\"video-responsive\">\n                    <iframe class=\"video\" width=\"580\" height=\"320\" src=\"https://www.youtube.com/embed/k9Qu4eO91nA\" frameborder=\"0\" allowfullscreen></iframe>\n                </div>\n                <div class=\"block-video__caption\">просто какое-то видео</div>\n            </div><p>Lorem ipsum + стандартный рандомайзный текст помноженный на стабильно непрекращающийся.&nbsp;t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p><p class=\"block block-image\">\n                <img src=\"https://media.dev.7skills.com/files/6007b2f4cf394845601922f8\" alt=\"\" class=\"block-image__content\"/>\n                \n            </p><p class=\"block block-image\">\n                <img src=\"https://media.dev.7skills.com/files/6007b2ff7b17ca22947488d2\" alt=\"когда сектор приз на барабане\" class=\"block-image__content\"/>\n                <span class=\"block-image__caption\">когда сектор приз на барабане</span>\n            </p>\n\n</body>\n\n</html>\n",
+    "content": "<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Title</title>\n    <link href=\"https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i&display=swap\" rel=\"stylesheet\">\n</head>\n<body>\n<style>\n    body,*,*:before,*:after{color:#1c1c1c;box-sizing:border-box;font-family:'Roboto',sans-serif}body{font-size:17px;line-height:26px;padding-left:20px;padding-right:20px;width:100%;margin:0}h1,h1 *{font-weight:500;font-size:26px;line-height:30px;color:#1c1c1c!important;margin-top:10px;margin-bottom:20px}img{max-width:100%!important;height:auto!important;display:block;margin-left:auto;margin-right:auto}p{margin-top:10px;margin-bottom:10px}h2,h2 *{font-weight:500;font-size:22px;line-height:30px;color:#1c1c1c;margin-top:20px;margin-bottom:10px}.video-responsive{overflow:hidden;padding-bottom:56.25%;position:relative;height:0}.video-responsive iframe{left:0;top:0;height:100%;width:100%;position:absolute}.quill-better-table-wrapper{overflow-x:auto}.quill-better-table-wrapper table{width:100%!important}ol li{margin-bottom:10px}ol{padding-left:50px;padding-right:10px}li[data-list=\"bullet\"]{padding-left:1.5em;list-style-type:none;position:relative}li[data-list=\"bullet\"] .ql-ui{position:absolute}li[data-list=\"bullet\"] .ql-ui:before{content:\"\\2022\";display:inline-block;margin-left:-1.5em;margin-right:.3em;text-align:right;white-space:nowrap;width:1.2em}li[data-list=\"ordered\"]{padding-left:1.5em;list-style-type:none;position:relative}li[data-list=\"ordered\"] .ql-ui{position:absolute}li[data-list=\"ordered\"] .ql-ui:before{content:counter(item) \". \";counter-increment:item;display:inline-block;margin-left:-1.5em;margin-right:.3em;text-align:right;white-space:nowrap;width:1.2em}ol,ul{counter-reset:item}strong,b{font-weight:500}blockquote{font-style:italic}a{text-decoration:none;color:#266C92!important}\n</style>\n\n<h2>Заголовок как он есть.</h2>\n                <div class=\"block-highlight block-highlight_blue\">\n                    <div class=\"block-highlight__title\">Синий</div>\n                    <div class=\"block-highlight__text\">Синий текст-&nbsp; <b>Жирный</b><b>- Жирный</b>- Поезд пассажирный</div>\n                </div>\n            \n                <div class=\"block-highlight block-highlight_gray\">\n                    <div class=\"block-highlight__title\">Серый</div>\n                    <div class=\"block-highlight__text\">Серый текст <a href=\"https://google.com\">синий низ</a></div>\n                </div>\n            \n                <div class=\"block-highlight block-highlight_yellow\">\n                    <div class=\"block-highlight__title\">Желтый</div>\n                    <div class=\"block-highlight__text\">желтый текст</div>\n                </div>\n            <p>Просто параграф, что бы это ни значило</p><ol><li>Пронумерованный список, пункт один</li><li>Пункт номер дваF<br></li></ol><p><b>А списки завезли?</b></p><p>- Да</p><p>- И&nbsp;</p><p>- Нет</p><p>Вообще есть такое понятие как триггер, анкоринг, смещение пространства и времени относительно нулевой точки координат, которая принимается за \"здесь и сейчас\" и которая постоянна в текущий момент времени и непостоянная на всем о<a href=\"https://ya.ru\">трезке времени</a>. <i>Бред конечно</i></p><blockquote>\n                <p>Хорошее начинается с большого, а кружка начинается с чайника</p>\n                <footer>Никто и никак</footer>\n            </blockquote><p class=\"block block-image\">\n                <img src=\"https://media.dev.7skills.com/files/60056306ef945906bb61a242\" alt=\"Небольшое описание фотки\" class=\"block-image__content\"/>\n                <span class=\"block-image__caption\">Небольшое описание фотки</span>\n            </p>\n                <div class=\"block-highlight block-highlight_blue\">\n                    <div class=\"block-highlight__title\">Врезка верх</div>\n                    <div class=\"block-highlight__text\">Врезка ниже</div>\n                </div>\n            \n            <div class=\"block-video\">\n                <div class=\"video-responsive\">\n                    <iframe class=\"video\" width=\"580\" height=\"320\" src=\"https://www.youtube.com/embed/k9Qu4eO91nA\" frameborder=\"0\" allowfullscreen></iframe>\n                </div>\n                <div class=\"block-video__caption\">просто какое-то видео</div>\n            </div><p>Lorem ipsum + стандартный рандомайзный текст помноженный на стабильно непрекращающийся.&nbsp;t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p><p class=\"block block-image\">\n                <img src=\"https://media.dev.7skills.com/files/6007b2f4cf394845601922f8\" alt=\"\" class=\"block-image__content\"/>\n                \n            </p><p class=\"block block-image\">\n                <img src=\"https://media.dev.7skills.com/files/6007b2ff7b17ca22947488d2\" alt=\"когда сектор приз на барабане\" class=\"block-image__content\"/>\n                <span class=\"block-image__caption\">когда сектор приз на барабане</span>\n            </p>\n\n</body>\n\n</html>\n",
     "category_name": null,
     "created_at": "2021-01-18T10:30:41.000000Z",
     "time_publish": "2021-01-18T10:30:41+00:00",
@@ -14,13 +14,37 @@
     "slug": "vse-tipy-blokov",
     "views_count": 3,
     "editor_content": {
-      "time": 1611117319608,
+      "time": 1611134392042,
       "blocks": [
         {
           "type": "header",
           "data": {
             "text": "Заголовок как он есть.",
             "level": 2
+          }
+        },
+        {
+          "type": "highlight",
+          "data": {
+            "text": "Синий текст-&nbsp; <b>Жирный</b><b>- Жирный</b>- Поезд пассажирный",
+            "title": "Синий",
+            "color": "blue"
+          }
+        },
+        {
+          "type": "highlight",
+          "data": {
+            "text": "Серый текст <a href=\"https://google.com\">синий низ</a>",
+            "title": "Серый",
+            "color": "gray"
+          }
+        },
+        {
+          "type": "highlight",
+          "data": {
+            "text": "желтый текст",
+            "title": "Желтый",
+            "color": "yellow"
           }
         },
         {
@@ -35,8 +59,38 @@
             "style": "ordered",
             "items": [
               "Пронумерованный список, пункт один",
-              "Пункт номер два"
+              "Пункт номер дваF<br>"
             ]
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "<b>А списки завезли?</b>"
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "- Да"
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "- И&nbsp;"
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "- Нет"
+          }
+        },
+        {
+          "type": "paragraph",
+          "data": {
+            "text": "Вообще есть такое понятие как триггер, анкоринг, смещение пространства и времени относительно нулевой точки координат, которая принимается за \"здесь и сейчас\" и которая постоянна в текущий момент времени и непостоянная на всем о<a href=\"https://ya.ru\">трезке времени</a>. <i>Бред конечно</i>"
           }
         },
         {

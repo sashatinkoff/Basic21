@@ -1,83 +1,97 @@
-.h2, h2 {
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 30px;
-    color: #1C1C1C;
-    margin-bottom: 1rem;
-    word-break: break-word;
-}
 
-*, *:before, *:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
-h2 {
+h2, .h2 {
     display: block;
-    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+    font-weight: bold;
+
+        font-size: 20px;
+        line-height: 20px;
+        color: #000000;
+}
+
+.h3, h3 {
+  display: block;
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
-}
 
-body {
-    margin: 0;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: normal;
-    line-height: 25px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #414141;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+        font-size: 18px;
+        line-height: 20px;
+        color: #000000;
+
+        margin-start:20px;
+                margin-end:20px;
 }
 
 
 blockquote {
-    border-left: 4px solid #414141;
-    margin: 0 0 32px;
-    padding-left: 24px;
+    border-left: 4px solid #b8c1cc;
+    padding: 0px 0px 0px 20px;
+    
+     margin: 20px;
+}
+
+blockquote p{
+     font-size: 16px;
+     font-style: normal;
+     padding: 0px ;
+    margin: 0px;
 }
 
 blockquote footer {
     text-align: right;
-    font-style: italic;
+ font-size: 16px;
+ font-style: normal;
 }
 
 .block-highlight_blue {
     background-color: #edeffc;
-     margin-top: 20px;
+}
+
+.block-highlight_gray {
+    background-color: #f2f3f5;
+}
+
+.block-highlight_yellow {
+    background-color: #FFF3CD;
 }
 
 .block-highlight {
-    padding: 20px 20px 0px 20px;
+    padding: 32px 20px 32px 20px;
     margin-bottom: 20px;
+         margin-top: 20px;
+
 }
 
 div {
     display: block;
-    margin-bottom: 20px;
+
 }
 
 .block-highlight__title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
+.block-highlight__text {
+    font-size: 16px;
+}
+
 .block-video__caption {
     display: block;
-       text-align: center;
-       font-size: 12px;
-       color: #333;
-       line-height: 1.33;
-       letter-spacing: .25px;
-        margin-top:-8px;
+        text-align: center;
+        font-size: 12px;
+        color: #818c99;
+        line-height: 1.33;
+        letter-spacing: .25px;
+         padding-top:12px;
 
 }
 
@@ -85,10 +99,10 @@ div {
     display: block;
     text-align: center;
     font-size: 12px;
-    color: #333;
+    color: #818c99;
     line-height: 1.33;
     letter-spacing: .25px;
-     padding-top:8px;
+     padding-top:12px;
 }
 
 ol {
@@ -99,4 +113,129 @@ ol {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
+}
+
+body,
+*,
+*:before,
+*:after {
+	color: #1c1c1c;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif
+}
+
+body {
+	font-size: 17px;
+	line-height: 26px;
+	width: 100%;
+	margin: 0px;
+	padding:0px;
+	margin-bottom:50px;
+}
+
+
+
+img {
+    width:100%;
+	height: auto!important;
+	display: block;
+	padding:0;
+	margin:0;
+}
+
+.block-image{
+padding:0;
+	margin:0;
+	width:100%;
+}
+
+
+.video-responsive {
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	position: relative;
+	height: 0
+}
+
+.video-responsive iframe {
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	position: absolute
+}
+
+.quill-better-table-wrapper {
+	overflow-x: auto
+}
+
+.quill-better-table-wrapper table {
+	width: 100%!important
+}
+
+ol li {
+	margin: 0px 10px 10px 0px;
+}
+
+ol {
+    margin: 0px 10px 30px 0px;
+}
+
+li[data-list="bullet"] {
+	padding-left: 1.5em;
+	list-style-type: none;
+	position: relative
+}
+
+li[data-list="bullet"] .ql-ui {
+	position: absolute
+}
+
+li[data-list="bullet"] .ql-ui:before {
+	content: "\2022";
+	display: inline-block;
+	margin-left: -1.5em;
+	margin-right: .3em;
+	text-align: right;
+	white-space: nowrap;
+	width: 1.2em
+}
+
+li[data-list="ordered"] {
+	padding-left: 1.5em;
+	list-style-type: none;
+	position: relative
+}
+
+li[data-list="ordered"] .ql-ui {
+	position: absolute
+}
+
+li[data-list="ordered"] .ql-ui:before {
+	content: counter(item) ". ";
+	counter-increment: item;
+	display: inline-block;
+	margin-left: -1.5em;
+	margin-right: .3em;
+	text-align: right;
+	white-space: nowrap;
+	width: 1.2em
+}
+
+ol,
+ul {
+	counter-reset: item
+}
+
+strong,
+b {
+	font-weight: 500
+}
+
+p {
+padding: 0px 20px 0px 20;
+	margin-top: 10px;
+	margin-bottom: 10px
+    	background-color:#F0F0F0;
+    	display: block;
 }

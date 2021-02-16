@@ -2,21 +2,24 @@ package com.isidroid.b21.clean.presentation
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.content.Intent.ACTION_VIEW
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.util.AttributeSet
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import com.bumptech.glide.Glide
+import android.webkit.*
+import androidx.annotation.CallSuper
+import androidx.annotation.RequiresApi
+import com.isidroid.b21.GlideApp
 import com.isidroid.b21.R
 import com.stfalcon.imageviewer.StfalconImageViewer
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_fullscreen.view.*
-import timber.log.Timber
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -26,13 +29,14 @@ private const val IMAGE_TYPE = 5
 class CustomWebView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    private val useCustomCss: Boolean = true
-) : WebView(context, attrs, defStyleAttr), View.OnClickListener, View.OnTouchListener {
+    var useCustomCss: Boolean = true,
     var onClick: ((String?) -> Unit)? = null
-
+) : WebView(context, attrs, defStyleAttr), View.OnClickListener, View.OnTouchListener {
     private var startClickTime: Long = 0
     private var imageViewer: StfalconImageViewer<String>? = null
-    private val images = mutableListOf<String>()
+    private val images = mutableListOf<Img>()
+    private val srcRegex = "src\\s*=\\s*\"([^\"]+)\"".toRegex()
+    private val altRegex = "alt\\s*=\\s*\"([^\"]+)\"".toRegex()
 
     init {
         create()
@@ -44,18 +48,7 @@ class CustomWebView @JvmOverloads constructor(
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun create() {
-        webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView?, url: String?) {
-                if (useCustomCss) injectCSS()
-                visibility = View.VISIBLE
-                super.onPageFinished(view, url)
-            }
-
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-                visibility = View.INVISIBLE
-            }
-        }
+        webViewClient = CustomClient(context)
 
         with(settings) {
             javaScriptEnabled = true
@@ -89,6 +82,10 @@ class CustomWebView @JvmOverloads constructor(
 
             loadUrl(
                 "javascript:(function() {" +
+                        "var st = document.getElementsByTagName('style');" +
+                        "for(i = 0 ; i < st.length ; i++){" +
+                        "st[i].parentNode.removeChild(st[i]);" +
+                        "}" +
                         "var parent = document.getElementsByTagName('head').item(0);" +
                         "var style = document.createElement('style');" +
                         "style.type = 'text/css';" +  // Tell the browser to BASE64-decode the string into your script !!!
@@ -108,18 +105,14 @@ class CustomWebView @JvmOverloads constructor(
             Pattern.CASE_INSENSITIVE
         )
         val m: Matcher = p.matcher(html)
-        var quote: String? = null
-        var src: String? = null
         while (m.find()) {
-            quote = m.group(1)
+            val htmlTag = m.group(0)
             try {
-                src =
-                    if (quote == null || quote.trim { it <= ' ' }.isEmpty())
-                        m.group(2).split("//s+")[0] else m.group(2)
+                val src = srcRegex.find(htmlTag)?.groupValues?.lastOrNull()
+                val alt = altRegex.find(htmlTag)?.groupValues?.lastOrNull().orEmpty()
 
-                src?.also { images.add(it) }
-            } catch (t: Throwable) {
-
+                src?.let { images.add(Img(url = src, description = alt)) }
+            } catch (e: Throwable) {
             }
         }
     }
@@ -134,31 +127,49 @@ class CustomWebView @JvmOverloads constructor(
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showImage(url: String?) {
         url ?: return
 
         val list: List<String>
-        val position = images.indexOf(url).let {
-            list = if (it >= 0) images else listOf(url)
+        val position = images.indexOfFirst { it.url == url }.let {
+            list = if (it >= 0) images.map { it.url } else listOf(url)
             if (it < 0) 0 else it
         }
 
-        imageViewer = StfalconImageViewer.Builder(context, list) { view, url ->
-            Glide.with(view).load(url).into(view)
+        val overlayView by lazy {
+            LayoutInflater.from(context)
+                .inflate(R.layout.dialog_fullscreen, null, false)
+                .apply {
+                    toolbar.setNavigationOnClickListener { imageViewer?.close() }
+                }
         }
+
+
+        updateLayout(view = overlayView, position = position, limit = list.size)
+
+        imageViewer = StfalconImageViewer.Builder(context, list) { view, url ->
+            GlideApp.with(view).load(url).into(view)
+        }
+            .withImageChangeListener {
+                updateLayout(view = overlayView, position = it, limit = list.size)
+            }
             .withStartPosition(position)
             .withBackgroundColor(Color.BLACK)
             .withHiddenStatusBar(true)
             .allowZooming(true)
             .allowSwipeToDismiss(true)
-            .withOverlayView(
-                LayoutInflater.from(context)
-                    .inflate(R.layout.dialog_fullscreen, null, false)
-                    .apply { buttonClose.setOnClickListener { imageViewer?.close() } }
-            ).build()
+            .withOverlayView(overlayView)
+            .build()
 
 
         imageViewer?.show()
+    }
+
+    private fun updateLayout(view: View, position: Int, limit: Int) = view.apply {
+        textView.text = images[position].description
+        toolbar.title =
+            String.format(context.getString(R.string.image_counter), position + 1, limit)
     }
 
     // View.OnTouchListener
@@ -175,4 +186,43 @@ class CustomWebView @JvmOverloads constructor(
         return false
     }
 
+    open class CustomClient(private val context: Context) : WebViewClient() {
+
+        @CallSuper
+        override fun onPageFinished(view: WebView?, url: String?) {
+            (view as? CustomWebView)?.also { v ->
+                if (v.useCustomCss) v.injectCSS()
+                v.visibility = View.VISIBLE
+            }
+
+
+            view?.visibility = View.VISIBLE
+            super.onPageFinished(view, url)
+        }
+
+        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+            super.onPageStarted(view, url, favicon)
+            view?.visibility = View.INVISIBLE
+        }
+
+        override fun shouldOverrideUrlLoading(view: WebView?, url: String?) =
+            handleUrl(Uri.parse(url.orEmpty()))
+
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?) =
+            handleUrl(request?.url)
+
+        private fun handleUrl(uri: Uri?): Boolean {
+            uri ?: return true
+
+            return if (uri.host?.contains("google.com") == true) false
+            else Intent(ACTION_VIEW, uri)
+                .let {
+                    context.startActivity(it)
+                    false
+                }
+        }
+    }
+
+    data class Img(val url: String, val description: String = "")
 }
