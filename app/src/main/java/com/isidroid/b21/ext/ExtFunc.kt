@@ -1,12 +1,18 @@
 package com.isidroid.b21.ext
 
-fun <T> tryGetResult(
-    block: () -> T?,
-    onError: ((Throwable) -> T?)? = null
+import timber.log.Timber
+
+inline fun <T> catchAll(
+    action: () -> T?,
+    noinline onFinally: (() -> T?)? = null,
+    message: String? = null
 ): T? {
     return try {
-        block()
-    } catch (e: Exception) {
-        onError?.let { onError.invoke(e) }
+        action()
+    } catch (t: Throwable) {
+        Timber.i("Failed to $message. ${t.message}")
+        null
+    } finally {
+        onFinally?.invoke()
     }
 }

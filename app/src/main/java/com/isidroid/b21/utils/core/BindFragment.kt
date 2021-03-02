@@ -18,7 +18,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(), LifecycleObserver,
-    IBackable, IFragmentConnector, IBillingUseCase.Listener {
+    IBackable, IFragmentConnector, IBaseView, IBillingUseCase.Listener {
     @Inject protected lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var billing: IBillingUseCase
 
@@ -49,6 +49,13 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
             .also {
                 if (::billing.isInitialized) billing.addListener(this)
             }
+
+    @CallSuper
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        createForm()
+        createToolbar()
+        createAdapter()
+    }
 
     override fun onPause() {
         super.onPause()

@@ -47,15 +47,3 @@ fun Long.toFileSize(): String {
 
     return DecimalFormat("#,##0.#").format(size / 1024.0.pow(digitGroups)) + " " + units[digitGroups.toInt()]
 }
-
-fun String.findTags(tag: String): List<Pair<String, String>> {
-    val result = mutableListOf<Pair<String, String>>()
-
-    val regex = "(?i)<$tag[^>]+>([^<]+)<\\/$tag>"
-    val pattern = Pattern.compile(regex)
-    val matcher = pattern.matcher(this)
-    while (matcher.find()) {
-        result.add(Pair(matcher.group(0), matcher.group(1)))
-    }
-    return result.filter { it.first.isNotEmpty() && it.second.isNotEmpty() }
-}

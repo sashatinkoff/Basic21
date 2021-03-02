@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.*
 import android.widget.EditText
+import android.widget.ViewFlipper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,38 +33,6 @@ fun View.height(onlyHeight: Boolean = true): Int {
     return height + if (onlyHeight) 0 else offsets
 }
 
-
-fun View.blink() {
-    visible(true)
-
-    val duration = 400L
-    val maxAlpha = .9f
-
-    val fadeIn = AlphaAnimation(0f, maxAlpha)
-    fadeIn.interpolator = DecelerateInterpolator()
-
-    val fadeOut = AlphaAnimation(maxAlpha, 0f)
-    fadeOut.interpolator = AccelerateInterpolator()
-    fadeOut.startOffset = duration
-
-    fadeIn.duration = duration
-    fadeOut.duration = duration
-
-    AnimationSet(false)
-        .let {
-            it.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationEnd(p0: Animation?) {
-                    visible(false)
-                }
-
-                override fun onAnimationStart(p0: Animation?) {}
-                override fun onAnimationRepeat(p0: Animation?) {}
-            })
-            it.addAnimation(fadeIn)
-            it.addAnimation(fadeOut)
-            animation = it
-        }
-}
 
 fun ViewPager2.reduceDragSensitivity() {
     try {
@@ -94,10 +63,6 @@ fun BottomNavigationView.uncheckAllItems() {
     menu.setGroupCheckable(0, true, true)
 }
 
-fun View.randomBackground() {
-    setBackgroundColor(Color.rgb(Random.nextInt(255), Random.nextInt(255), Random.nextInt(255)))
-}
-
 inline fun TabLayout.doOnTabSelected(crossinline action: (tab: TabLayout.Tab?) -> Unit) =
     addOnTabSelectedListener(onTabSelected = action)
 
@@ -114,4 +79,27 @@ inline fun TabLayout.addOnTabSelectedListener(
 
     addOnTabSelectedListener(listener)
     return listener
+}
+
+fun ViewFlipper.addOnChangeListener(onChange: (Int) -> Unit) {
+    addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+        private var currentDisplayed = -1
+
+        override fun onLayoutChange(
+            v: View?,
+            left: Int,
+            top: Int,
+            right: Int,
+            bottom: Int,
+            oldLeft: Int,
+            oldTop: Int,
+            oldRight: Int,
+            oldBottom: Int
+        ) {
+            if (currentDisplayed != displayedChild) {
+                onChange(displayedChild)
+                currentDisplayed = displayedChild
+            }
+        }
+    })
 }

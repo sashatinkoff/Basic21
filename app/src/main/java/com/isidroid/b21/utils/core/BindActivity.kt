@@ -6,6 +6,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -14,12 +15,13 @@ import com.isidroid.b21.clean.domain.IBillingUseCase
 import com.isidroid.b21.di.ViewModelFactory
 import com.isidroid.b21.ext.alert
 import com.isidroid.b21.ext.hideSoftKeyboard
+import com.isidroid.b21.models.settings.Settings
 import com.isidroid.b21.utils.CloseAppHandler
 import timber.log.Timber
 import javax.inject.Inject
 
 abstract class BindActivity(@LayoutRes private val layoutRes: Int) : AppCompatActivity(),
-    IFragmentConnector, IBillingUseCase.Listener {
+    IFragmentConnector, IBaseView, IBillingUseCase.Listener {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var billing: IBillingUseCase
 
@@ -28,15 +30,22 @@ abstract class BindActivity(@LayoutRes private val layoutRes: Int) : AppCompatAc
     override var currentFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(Settings.theme)
         Timber.tag("activity_lifecycle").i("${javaClass.simpleName} onCreate")
         super.onCreate(savedInstanceState)
 
         if (::billing.isInitialized) billing.addListener(this)
         DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRes)
+
+        createToolbar()
+        createForm()
+        createAdapter()
+
         onCreateViewModel()
     }
 
     override fun onResume() {
+        AppCompatDelegate.setDefaultNightMode(Settings.theme)
         super.onResume()
         Timber.tag("activity_lifecycle").i("${javaClass.simpleName} onResume")
     }

@@ -62,7 +62,7 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
@@ -101,6 +101,8 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.github.bumptech.glide:glide:$glide"
     implementation "com.github.chrisbanes:PhotoView:$photoview"
+    implementation "org.greenrobot:eventbus:$eventbus"
+
 
     kapt "com.github.bumptech.glide:compiler:$glide"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
