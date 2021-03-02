@@ -3,7 +3,6 @@ package com.isidroid.b21.ext
 import androidx.core.net.toUri
 import java.security.MessageDigest
 import java.text.DecimalFormat
-import java.util.regex.Pattern
 import kotlin.math.ln
 import kotlin.math.log10
 import kotlin.math.pow

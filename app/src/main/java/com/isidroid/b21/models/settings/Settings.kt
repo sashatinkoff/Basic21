@@ -14,7 +14,11 @@ object Settings {
         get() = map.int(SettingId.THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         set(value) = map.save(SettingId.THEME, value)
 
-    var sessionKey: String?
-        get() = map.string(SettingId.SESSION_KEY, null)
-        set(value) = map.save(SettingId.SESSION_KEY, value)
+    var accessToken: String?
+        get() = map.string(SettingId.ACCESS_TOKEN, null)
+        set(value) = map.save(SettingId.ACCESS_TOKEN, value)
+
+    var refreshToken: String?
+        get() = map.string(SettingId.REFRESH_TOKEN, null)
+        set(value) = map.save(SettingId.REFRESH_TOKEN, value)
 }

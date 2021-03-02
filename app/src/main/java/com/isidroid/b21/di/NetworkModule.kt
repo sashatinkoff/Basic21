@@ -2,11 +2,12 @@ package com.isidroid.b21.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.isidroid.b21.clean.domain.ISessionUseCase
 import com.isidroid.b21.network.AuthInterceptor
-import com.isidroid.b21.network.apis.ApiTest
+import com.isidroid.b21.network.apis.ApiSession
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
+import okhttp3.Authenticator
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,15 +23,14 @@ object NetworkModule {
     private fun <T> httpClient(
         cl: Class<T>,
         logLevel: HttpLoggingInterceptor.Level,
-        authInterceptor: Interceptor?
+        authenticator: Authenticator?
     ): OkHttpClient {
         val builder = OkHttpClient().newBuilder()
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
 
-        authInterceptor?.let { builder.addInterceptor(it) }
+        authenticator?.also { builder.authenticator(it) }
         builder.addInterceptor(logger(cl = cl, logLevel = logLevel))
-
         return builder.build()
     }
 
@@ -42,9 +42,9 @@ object NetworkModule {
         baseUrl: String = BASE_API_URL,
         cl: Class<T>,
         logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BODY,
-        authInterceptor: Interceptor? = null
+        authenticator: Authenticator?
     ): T = Retrofit.Builder()
-        .client(httpClient(cl = cl, logLevel = logLevel, authInterceptor = authInterceptor))
+        .client(httpClient(cl = cl, logLevel = logLevel, authenticator = authenticator))
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(provideGson()))
         .build()
@@ -57,11 +57,15 @@ object NetworkModule {
         .create()
 
     @JvmStatic @Singleton @Provides
-    fun provideApiImgur() = api(
+    fun provideAuthInterceptor(sessionUseCase: ISessionUseCase): Authenticator =
+        AuthInterceptor(sessionUseCase)
+
+    @JvmStatic @Singleton @Provides
+    fun provideApiSession(authenticator: Authenticator) = api(
         baseUrl = BASE_API_URL,
-        cl = ApiTest::class.java,
+        cl = ApiSession::class.java,
         logLevel = HttpLoggingInterceptor.Level.BODY,
-        authInterceptor = AuthInterceptor()
+        authenticator = authenticator
     )
 
 }

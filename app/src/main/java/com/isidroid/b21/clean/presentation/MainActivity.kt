@@ -3,7 +3,6 @@ package com.isidroid.b21.clean.presentation
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import com.google.firebase.messaging.FirebaseMessaging
 import com.isidroid.b21.R
 import com.isidroid.b21.appComponent
 import com.isidroid.b21.utils.core.BindActivity

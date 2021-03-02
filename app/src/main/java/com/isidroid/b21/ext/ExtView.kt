@@ -1,17 +1,14 @@
 package com.isidroid.b21.ext
 
-import android.graphics.Color
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.*
 import android.widget.EditText
 import android.widget.ViewFlipper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
-import kotlin.random.Random
 
 
 fun View.enable(enabled: Boolean, alpha: Float = .6f) = apply {

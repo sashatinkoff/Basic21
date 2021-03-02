@@ -1,10 +1,18 @@
 package com.isidroid.b21.network
 
-import okhttp3.Interceptor
-import okhttp3.Response
+import com.isidroid.b21.clean.domain.ISessionUseCase
+import okhttp3.*
 
-class AuthInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        return chain.proceed(chain.request())
+
+private const val AUTHORIZATION = "Authorization"
+
+class AuthInterceptor(private val sessionUseCase: ISessionUseCase) : Authenticator {
+    override fun authenticate(route: Route?, response: Response): Request? {
+        sessionUseCase.refreshToken()
+
+        return response.request.newBuilder()
+            .removeHeader(AUTHORIZATION)
+            .addHeader(AUTHORIZATION, "Bearer ${sessionUseCase.accessToken}")
+            .build()
     }
 }

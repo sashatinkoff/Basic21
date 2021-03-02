@@ -1,13 +1,8 @@
 package com.isidroid.b21.clean.presentation
 
 import com.google.android.gms.tasks.Tasks
-import com.google.firebase.iid.FirebaseInstanceId
-import com.google.firebase.installations.FirebaseInstallations
-import com.google.firebase.installations.FirebaseInstallationsApi
-import com.google.firebase.installations.FirebaseInstallationsRegistrar
 import com.google.firebase.messaging.FirebaseMessaging
 import com.isidroid.b21.utils.CoroutineViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor() : CoroutineViewModel() {
