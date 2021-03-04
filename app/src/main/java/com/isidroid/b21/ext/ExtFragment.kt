@@ -42,5 +42,6 @@ private fun putArgument(fragment: Fragment, key: String, value: Any?) = fragment
         is Double -> arguments?.putDouble(key, value)
         is Boolean -> arguments?.putBoolean(key, value)
         is Float -> arguments?.putFloat(key, value)
+         is Parcelable -> arguments?.putParcelable(key, value)
     }
 }

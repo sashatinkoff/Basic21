@@ -122,8 +122,9 @@ dependencies {
 
     // firebase
     implementation platform('com.google.firebase:firebase-bom:26.6.0')
-    implementation "com.google.firebase:firebase-crashlytics"
+    implementation "com.google.firebase:firebase-crashlytics-ktx"
     implementation "com.google.firebase:firebase-messaging-ktx"
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // tools
     implementation "com.jakewharton.timber:timber:$timber"
@@ -131,7 +132,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide"
     implementation "com.github.chrisbanes:PhotoView:$photoview"
     implementation "org.greenrobot:eventbus:$eventbus"
-
 
     kapt "com.github.bumptech.glide:compiler:$glide"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

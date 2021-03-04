@@ -46,6 +46,8 @@ open class Router(
             (value as? Double)?.let { intent.putExtra(key, value) }
             (value as? Long)?.let { intent.putExtra(key, value) }
             (value as? Serializable)?.let { intent.putExtra(key, value) }
+                        (value as? Parcelable)?.let { intent.putExtra(key, value) }
+
         }
 
         val options: Bundle? = (context as? Activity)?.let { activity ->
