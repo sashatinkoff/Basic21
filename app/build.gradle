@@ -53,11 +53,39 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kotlinOptions { jvmTarget = '1.8' }
+    buildFeatures { dataBinding true }
+
+
+    flavorDimensions 'app_type', 'mockable'
+    productFlavors {
+        stage {
+            dimension = 'app_type'
+            applicationIdSuffix = ".stage"
+        }
+
+        prod {
+            dimension = 'app_type'
+        }
+
+        mock {
+            dimension = 'mockable'
+        }
+
+        real {
+            dimension = 'mockable'
+        }
     }
 
-    buildFeatures { dataBinding true }
+    variantFilter { variant ->
+        if (
+        (name.contains("real") && name.contains("Mock"))
+                ||  (name.contains("prod") && name.contains("Mock"))
+                ||  (name.contains("stage") && name.contains("Mock") && name.contains("Release"))
+        ) {
+            setIgnore(true)
+        }
+    }
 }
 
 dependencies {
@@ -75,7 +103,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragmentktx"
     implementation "androidx.activity:activity-ktx:$activityx"
     implementation "androidx.preference:preference-ktx:$preferences"
-    implementation "com.android.billingclient:billing:$billing"
+    realImplementation "com.android.billingclient:billing:$billing"
 
     // Google Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"

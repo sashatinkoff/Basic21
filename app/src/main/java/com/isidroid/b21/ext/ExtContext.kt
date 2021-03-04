@@ -19,9 +19,6 @@ fun Context.colorFromAttr(@AttrRes attr: Int) = if (attr == 0) 0 else with(Typed
     data
 }
 
-fun Context.screenWidthPx() = Resources.getSystem().displayMetrics.widthPixels
-fun Context.screenHeightPx() = Resources.getSystem().displayMetrics.heightPixels
-
 fun Context.dpToPx(dp: Int) =
     with(resources.displayMetrics) { (dp * (xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt() }
 
@@ -30,3 +27,9 @@ fun Context.pxToDp(px: Int) = with(resources.displayMetrics) {
 }
 
 fun Context.color(@ColorRes color: Int) = ContextCompat.getColor(this, color)
+fun Context.assetsFile(name: String) = assets.open(name).bufferedReader().use { it.readText() }
+
+val Context.screenWidthPx
+    get() = resources.displayMetrics.widthPixels
+val Context.screenHeightPx
+    get() = resources.displayMetrics.heightPixels
