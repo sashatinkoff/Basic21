@@ -35,8 +35,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
     override fun onResume() {
         super.onResume()
         Timber.tag("fragment_lifecycle").i("onResume $javaClass")
-        (parentFragment as? IFragmentConnector)?.onFragmentResumed(this)
-        (activity as? IFragmentConnector)?.onFragmentResumed(this)
+        fragmentConnector(true)
     }
 
     @CallSuper
@@ -60,14 +59,26 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
     override fun onPause() {
         super.onPause()
         requireActivity().hideSoftKeyboard()
-        (parentFragment as? IFragmentConnector)?.onFragmentPaused(this)
-        (activity as? IFragmentConnector)?.onFragmentPaused(this)
+        fragmentConnector(false)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         if (::billing.isInitialized) billing.removeListener(this)
     }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        fragmentConnector(!hidden)
+    }
+
+    private fun fragmentConnector(isResumed: Boolean) {
+        val connector =
+            parentFragment as? IFragmentConnector ?: activity as? IFragmentConnector ?: return
+
+        if(isResumed && !isHidden) connector.onFragmentResumed(this)
+        else connector.onFragmentPaused(this)
+    }
+
 
     open fun onCreateViewModel() {}
 

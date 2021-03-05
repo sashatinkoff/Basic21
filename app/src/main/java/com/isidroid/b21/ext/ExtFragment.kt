@@ -45,3 +45,6 @@ private fun putArgument(fragment: Fragment, key: String, value: Any?) = fragment
          is Parcelable -> arguments?.putParcelable(key, value)
     }
 }
+
+val Fragment?.info
+    get() = this?.let { f -> "${f.javaClass.simpleName}, isVisible=${f.isVisible}, state=${f.lifecycle.currentState}" } ?: "null"
