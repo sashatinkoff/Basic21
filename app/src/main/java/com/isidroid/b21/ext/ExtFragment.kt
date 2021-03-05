@@ -1,6 +1,7 @@
 package com.isidroid.b21.ext
 
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -42,9 +43,10 @@ private fun putArgument(fragment: Fragment, key: String, value: Any?) = fragment
         is Double -> arguments?.putDouble(key, value)
         is Boolean -> arguments?.putBoolean(key, value)
         is Float -> arguments?.putFloat(key, value)
-         is Parcelable -> arguments?.putParcelable(key, value)
+        is Parcelable -> arguments?.putParcelable(key, value)
     }
 }
 
 val Fragment?.info
-    get() = this?.let { f -> "${f.javaClass.simpleName}, isVisible=${f.isVisible}, state=${f.lifecycle.currentState}" } ?: "null"
+    get() = this?.let { f -> "${f.javaClass.simpleName}, isVisible=${f.isVisible}, state=${f.lifecycle.currentState}" }
+        ?: "null"
