@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.isidroid.b21.R
 import com.isidroid.b21.clean.domain.IBillingUseCase
@@ -19,7 +20,7 @@ import javax.inject.Inject
 abstract class BindFullscreenDialogFragment(
     private val layoutRes: Int,
     private val canceledOnTouchOutside: Boolean = true
-) : AppCompatDialogFragment(), IBillingUseCase.Listener {
+) : AppCompatDialogFragment(), IBaseView, IBillingUseCase.Listener {
     @Inject protected lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var billing: IBillingUseCase
 
@@ -32,7 +33,6 @@ abstract class BindFullscreenDialogFragment(
         super.onDestroy()
         if (::billing.isInitialized) billing.removeListener(this)
     }
-
 
     protected open fun onCreateViewModel() {}
 
@@ -71,6 +71,11 @@ abstract class BindFullscreenDialogFragment(
             if (::billing.isInitialized) billing.addListener(this@BindFullscreenDialogFragment)
             setOnClickListener { dismissAllowingStateLoss() }
         }
+
+    @CallSuper
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        createBaseView()
+    }
 
     // IBillingUseCase.Listener
     override fun onPurchase(isPremium: Boolean) {}

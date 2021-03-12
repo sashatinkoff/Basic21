@@ -51,9 +51,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        createForm()
-        createToolbar()
-        createAdapter()
+        createBaseView()
     }
 
     override fun onPause() {
@@ -67,6 +65,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         if (::billing.isInitialized) billing.removeListener(this)
     }
 
+    @CallSuper
     override fun onHiddenChanged(hidden: Boolean) {
         fragmentConnector(!hidden)
     }

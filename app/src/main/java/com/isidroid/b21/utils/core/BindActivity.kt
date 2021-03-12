@@ -37,10 +37,7 @@ abstract class BindActivity(@LayoutRes private val layoutRes: Int) : AppCompatAc
         if (::billing.isInitialized) billing.addListener(this)
         DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRes)
 
-        createToolbar()
-        createForm()
-        createAdapter()
-
+        createBaseView()
         onCreateViewModel()
     }
 

@@ -1,7 +1,16 @@
 package com.isidroid.b21.utils.core
 
+import androidx.annotation.CallSuper
+
 interface IBaseView {
-    fun createToolbar(){}
+    @CallSuper
+    fun createBaseView() {
+        createAppBar()
+        createForm()
+        createAdapter()
+    }
+
+    fun createAppBar(){}
     fun createForm(){}
     fun createAdapter(){}
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.isidroid.b21.clean.domain.IBillingUseCase
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 abstract class BindBottomSheetDialogFragment(
     @LayoutRes private val layoutRes: Int
-) : BottomSheetDialogFragment(), IBillingUseCase.Listener {
+) : BottomSheetDialogFragment(), IBaseView, IBillingUseCase.Listener {
     @Inject protected lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var billing: IBillingUseCase
 
@@ -33,6 +34,11 @@ abstract class BindBottomSheetDialogFragment(
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(layoutRes, container, false)
         .also { if (::billing.isInitialized) billing.addListener(this) }
+
+    @CallSuper
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        createBaseView()
+    }
 
     protected open fun onCreateViewModel() {}
 
