@@ -20,7 +20,12 @@ import com.isidroid.b21.utils.CloseAppHandler
 import timber.log.Timber
 import javax.inject.Inject
 
-abstract class BindActivity<T : ViewDataBinding>(
+/**
+ * this class contains the base implementation, do not modify it.
+ * To extend the class with your logic use base/Bind*.kt class
+ *
+ */
+abstract class CoreBindActivity<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int
 ) : AppCompatActivity(), IFragmentConnector, IBaseView, IBillingUseCase.Listener {
 

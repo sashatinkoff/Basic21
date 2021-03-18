@@ -13,7 +13,12 @@ import com.isidroid.b21.clean.domain.IBillingUseCase
 import com.isidroid.b21.di.ViewModelFactory
 import javax.inject.Inject
 
-abstract class BindBottomSheetDialogFragment<T : ViewDataBinding>(
+/**
+ * this class contains the base implementation, do not modify it.
+ * To extend the class with your logic use base/Bind*.kt class
+ *
+ */
+abstract class CoreBindBottomSheetDialogFragment<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int
 ) : BottomSheetDialogFragment(), IBaseView, IBillingUseCase.Listener {
     @Inject protected lateinit var viewModelFactory: ViewModelFactory

@@ -18,8 +18,12 @@ import com.isidroid.b21.clean.domain.IBillingUseCase
 import com.isidroid.b21.di.ViewModelFactory
 import javax.inject.Inject
 
-
-abstract class BindFullscreenDialogFragment<T : ViewDataBinding>(
+/**
+ * this class contains the base implementation, do not modify it.
+ * To extend the class with your logic use base/Bind*.kt class
+ *
+ */
+abstract class CoreBindFullscreenDialogFragment<T : ViewDataBinding>(
     private val layoutRes: Int,
     private val canceledOnTouchOutside: Boolean = true
 ) : AppCompatDialogFragment(), IBaseView, IBillingUseCase.Listener {
@@ -42,7 +46,7 @@ abstract class BindFullscreenDialogFragment<T : ViewDataBinding>(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return object : Dialog(requireActivity(), theme) {
             override fun onBackPressed() {
-                this@BindFullscreenDialogFragment.onBackPressed()
+                this@CoreBindFullscreenDialogFragment.onBackPressed()
             }
 
         }.apply {

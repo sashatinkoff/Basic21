@@ -17,7 +17,12 @@ import com.isidroid.b21.ext.hideSoftKeyboard
 import timber.log.Timber
 import javax.inject.Inject
 
-abstract class BindFragment<T : ViewDataBinding>(
+/**
+ * this class contains the base implementation, do not modify it.
+ * To extend the class with your logic use base/Bind*.kt class
+ *
+ */
+abstract class CoreBindFragment<T : ViewDataBinding>(
     @LayoutRes private val layoutRes: Int
 ) : Fragment(), LifecycleObserver, IBackable, IFragmentConnector, IBaseView,
     IBillingUseCase.Listener {
@@ -89,7 +94,7 @@ abstract class BindFragment<T : ViewDataBinding>(
         buttonTitle: String? = null,
         onButtonClick: (() -> Unit)? = null
     ) {
-        (requireActivity() as? BindActivity<out ViewDataBinding>)
+        (requireActivity() as? CoreBindActivity<out ViewDataBinding>)
             ?.showError(message, isCritical, buttonTitle, onButtonClick)
     }
 
@@ -100,7 +105,7 @@ abstract class BindFragment<T : ViewDataBinding>(
         buttonTitle: String? = null,
         onButtonClick: (() -> Unit)? = null
     ) {
-        (requireActivity() as? BindActivity<out ViewDataBinding>)
+        (requireActivity() as? CoreBindActivity<out ViewDataBinding>)
             ?.showError(t, isCritical, buttonTitle, onButtonClick)
     }
 
@@ -109,7 +114,7 @@ abstract class BindFragment<T : ViewDataBinding>(
         fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
         containerLayoutId: Int? = null
     ) {
-        (requireActivity() as? BindActivity<out ViewDataBinding>)?.openFragmentSlide(
+        (requireActivity() as? CoreBindActivity<out ViewDataBinding>)?.openFragmentSlide(
             fragment,
             fragmentTag,
             containerLayoutId = containerLayoutId
@@ -126,7 +131,7 @@ abstract class BindFragment<T : ViewDataBinding>(
         animationPopExit: Int = R.anim.fragment_close_exit,
         fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
         containerLayoutId: Int? = null
-    ) = (requireActivity() as? BindActivity<out ViewDataBinding>)
+    ) = (requireActivity() as? CoreBindActivity<out ViewDataBinding>)
         ?.openFragment(
             fragment = fragment,
             useAnimations = useAnimations,
