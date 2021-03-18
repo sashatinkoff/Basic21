@@ -109,40 +109,31 @@ abstract class CoreBindFragment<T : ViewDataBinding>(
             ?.showError(t, isCritical, buttonTitle, onButtonClick)
     }
 
-    fun openFragmentSlide(
-        fragment: Fragment,
-        fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
-        containerLayoutId: Int? = null
-    ) {
-        (requireActivity() as? CoreBindActivity<out ViewDataBinding>)?.openFragmentSlide(
-            fragment,
-            fragmentTag,
-            containerLayoutId = containerLayoutId
-        )
-    }
 
-    fun openFragment(
-        fragment: Fragment,
-        useAnimations: Boolean = false,
-        addToBackStack: Boolean = true,
-        animationEnter: Int = R.anim.fragment_open_enter,
-        animationExit: Int = R.anim.fragment_close_exit,
-        animationPopEnter: Int = R.anim.fragment_open_enter,
-        animationPopExit: Int = R.anim.fragment_close_exit,
-        fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
-        containerLayoutId: Int? = null
-    ) = (requireActivity() as? CoreBindActivity<out ViewDataBinding>)
-        ?.openFragment(
-            fragment = fragment,
-            useAnimations = useAnimations,
-            addToBackStack = addToBackStack,
-            animationEnter = animationEnter,
-            animationExit = animationExit,
-            animationPopEnter = animationPopEnter,
-            animationPopExit = animationPopExit,
-            fragmentTag = fragmentTag,
-            containerLayoutId = containerLayoutId
-        )
+    override fun openFragment(
+        fragment: Fragment?,
+        useAnimations: Boolean,
+        addToBackStack: Boolean,
+        animationEnter: Int,
+        animationExit: Int,
+        animationPopEnter: Int,
+        animationPopExit: Int,
+        fragmentTag: String?,
+        containerLayoutId: Int?
+    ) {
+        (requireActivity() as? IFragmentConnector)
+            ?.openFragment(
+                fragment = fragment,
+                useAnimations = useAnimations,
+                addToBackStack = addToBackStack,
+                animationEnter = animationEnter,
+                animationExit = animationExit,
+                animationPopEnter = animationPopEnter,
+                animationPopExit = animationPopExit,
+                fragmentTag = fragmentTag,
+                containerLayoutId = containerLayoutId
+            )
+    }
 
     // IBackable
     override fun onBackPressed(): Boolean = false

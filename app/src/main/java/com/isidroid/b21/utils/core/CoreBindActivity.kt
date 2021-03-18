@@ -111,40 +111,21 @@ abstract class CoreBindActivity<T : ViewDataBinding>(
             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
-    private fun currentFragment() =
-        supportFragmentManager.fragments.lastOrNull {
-            it.javaClass.canonicalName.toString().startsWith("com.isidroid.b21") && it.isVisible
-        }
-
-    open fun openFragmentSlide(
-        fragment: Fragment,
-        fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
-        containerLayoutId: Int? = null
-    ) = openFragment(
-        fragment = fragment,
-        useAnimations = true,
-        addToBackStack = true,
-        animationEnter = R.anim.open_slide_enter,
-        animationExit = R.anim.empty,
-        animationPopEnter = R.anim.empty,
-        animationPopExit = R.anim.pop_exit,
-        fragmentTag = fragmentTag,
-        containerLayoutId = containerLayoutId
-    )
-
-    open fun openFragment(
-        fragment: Fragment,
-        useAnimations: Boolean = false,
-        addToBackStack: Boolean = true,
-        animationEnter: Int = R.anim.fragment_open_enter,
-        animationExit: Int = R.anim.fragment_close_exit,
-        animationPopEnter: Int = R.anim.fragment_open_enter,
-        animationPopExit: Int = R.anim.fragment_close_exit,
-        fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
-        containerLayoutId: Int? = null
+    override fun openFragment(
+        fragment: Fragment?,
+        useAnimations: Boolean,
+        addToBackStack: Boolean,
+        animationEnter: Int,
+        animationExit: Int,
+        animationPopEnter: Int,
+        animationPopExit: Int,
+        fragmentTag: String?,
+        containerLayoutId: Int?
     ) {
+        fragment ?: return
+
         // check whether the currently displayed
-        if (currentFragment()?.tag == fragmentTag) return
+        if (currentFragment?.tag == fragmentTag) return
 
         supportFragmentManager.beginTransaction().apply {
             if (useAnimations) setCustomAnimations(
@@ -152,7 +133,7 @@ abstract class CoreBindActivity<T : ViewDataBinding>(
                 animationPopEnter, animationPopExit
             )
 
-            currentFragment()?.let { hide(it) }
+            currentFragment?.let { hide(it) }
             supportFragmentManager.findFragmentByTag(fragmentTag)
                 ?.let { show(it) }
                 ?: run {
