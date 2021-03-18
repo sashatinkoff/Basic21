@@ -11,18 +11,21 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.isidroid.b21.R
 import com.isidroid.b21.clean.domain.IBillingUseCase
 import com.isidroid.b21.di.ViewModelFactory
 import javax.inject.Inject
 
 
-abstract class BindFullscreenDialogFragment(
+abstract class BindFullscreenDialogFragment<T : ViewDataBinding>(
     private val layoutRes: Int,
     private val canceledOnTouchOutside: Boolean = true
 ) : AppCompatDialogFragment(), IBaseView, IBillingUseCase.Listener {
     @Inject protected lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var billing: IBillingUseCase
+    lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,18 +62,25 @@ abstract class BindFullscreenDialogFragment(
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
+        if (::billing.isInitialized) billing.addListener(this)
         super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (::billing.isInitialized) billing.removeListener(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(layoutRes, container, false)
-        .apply {
-            if (::billing.isInitialized) billing.addListener(this@BindFullscreenDialogFragment)
-            setOnClickListener { dismissAllowingStateLoss() }
-        }
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
+        binding.root.setOnClickListener { dismissAllowingStateLoss() }
+
+        return binding.root
+    }
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

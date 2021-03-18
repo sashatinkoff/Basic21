@@ -20,10 +20,14 @@ import com.isidroid.b21.utils.CloseAppHandler
 import timber.log.Timber
 import javax.inject.Inject
 
-abstract class BindActivity(@LayoutRes private val layoutRes: Int) : AppCompatActivity(),
-    IFragmentConnector, IBaseView, IBillingUseCase.Listener {
+abstract class BindActivity<T : ViewDataBinding>(
+    @LayoutRes private val layoutRes: Int
+) : AppCompatActivity(), IFragmentConnector, IBaseView, IBillingUseCase.Listener {
+
     @Inject lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var billing: IBillingUseCase
+
+    lateinit var binding: T
 
     private var errorDialog: AlertDialog? = null
     private val closeAppHandler by lazy { CloseAppHandler(this) }
@@ -35,7 +39,7 @@ abstract class BindActivity(@LayoutRes private val layoutRes: Int) : AppCompatAc
         super.onCreate(savedInstanceState)
 
         if (::billing.isInitialized) billing.addListener(this)
-        DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRes)
+        binding = DataBindingUtil.setContentView(this, layoutRes)
 
         createBaseView()
         onCreateViewModel()

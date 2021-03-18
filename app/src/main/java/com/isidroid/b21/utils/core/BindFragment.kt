@@ -17,10 +17,14 @@ import com.isidroid.b21.ext.hideSoftKeyboard
 import timber.log.Timber
 import javax.inject.Inject
 
-abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(), LifecycleObserver,
-    IBackable, IFragmentConnector, IBaseView, IBillingUseCase.Listener {
+abstract class BindFragment<T : ViewDataBinding>(
+    @LayoutRes private val layoutRes: Int
+) : Fragment(), LifecycleObserver, IBackable, IFragmentConnector, IBaseView,
+    IBillingUseCase.Listener {
+
     @Inject protected lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var billing: IBillingUseCase
+    lateinit var binding: T
 
     override var currentFragment: Fragment? = null
 
@@ -36,6 +40,8 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         super.onResume()
         Timber.tag("fragment_lifecycle").i("onResume $javaClass")
         fragmentConnector(true)
+
+        if (::billing.isInitialized) billing.addListener(this)
     }
 
     @CallSuper
@@ -43,11 +49,10 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? =
-        DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutRes, container, false).root
-            .also {
-                if (::billing.isInitialized) billing.addListener(this)
-            }
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
+        return binding.root
+    }
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,10 +63,6 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         super.onPause()
         requireActivity().hideSoftKeyboard()
         fragmentConnector(false)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
         if (::billing.isInitialized) billing.removeListener(this)
     }
 
@@ -74,7 +75,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         val connector =
             parentFragment as? IFragmentConnector ?: activity as? IFragmentConnector ?: return
 
-        if(isResumed && !isHidden) connector.onFragmentResumed(this)
+        if (isResumed && !isHidden) connector.onFragmentResumed(this)
         else connector.onFragmentPaused(this)
     }
 
@@ -88,7 +89,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         buttonTitle: String? = null,
         onButtonClick: (() -> Unit)? = null
     ) {
-        (requireActivity() as? BindActivity)
+        (requireActivity() as? BindActivity<out ViewDataBinding>)
             ?.showError(message, isCritical, buttonTitle, onButtonClick)
     }
 
@@ -99,7 +100,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         buttonTitle: String? = null,
         onButtonClick: (() -> Unit)? = null
     ) {
-        (requireActivity() as? BindActivity)
+        (requireActivity() as? BindActivity<out ViewDataBinding>)
             ?.showError(t, isCritical, buttonTitle, onButtonClick)
     }
 
@@ -108,7 +109,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
         containerLayoutId: Int? = null
     ) {
-        (requireActivity() as? BindActivity)?.openFragmentSlide(
+        (requireActivity() as? BindActivity<out ViewDataBinding>)?.openFragmentSlide(
             fragment,
             fragmentTag,
             containerLayoutId = containerLayoutId
@@ -125,7 +126,7 @@ abstract class BindFragment(@LayoutRes private val layoutRes: Int) : Fragment(),
         animationPopExit: Int = R.anim.fragment_close_exit,
         fragmentTag: String? = if (fragment.tag.isNullOrEmpty()) fragment.javaClass.simpleName else fragment.tag,
         containerLayoutId: Int? = null
-    ) = (requireActivity() as? BindActivity)
+    ) = (requireActivity() as? BindActivity<out ViewDataBinding>)
         ?.openFragment(
             fragment = fragment,
             useAnimations = useAnimations,

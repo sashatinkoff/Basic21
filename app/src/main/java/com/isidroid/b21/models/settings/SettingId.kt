@@ -1,16 +1,16 @@
 package com.isidroid.b21.models.settings
 
-enum class SettingId(val type: SettingType, val title: Int? = null, val description: Int? = null) {
+import androidx.annotation.StringRes
+
+enum class SettingId(
+    val type: SettingType,
+    @StringRes val title: Int? = null,
+    @StringRes val description: Int? = null
+) {
     // string
     THEME(type = SettingType.INT),
     ACCESS_TOKEN(type = SettingType.STRING),
     REFRESH_TOKEN(type = SettingType.STRING);
-
-    fun update(value: Boolean) {
-        when (this) {
-
-        }
-    }
 
     fun update(value: Int) {
         when (this) {
