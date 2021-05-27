@@ -11,7 +11,7 @@ object Settings {
     }
 
     var theme: Int
-        get() = map.int(SettingId.THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        get() = map.int(SettingId.THEME, AppCompatDelegate.MODE_NIGHT_NO)
         set(value) = map.save(SettingId.THEME, value)
 
     var accessToken: String?
