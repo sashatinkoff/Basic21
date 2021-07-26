@@ -1,10 +1,12 @@
 package com.isidroid.b21.ext
 
+import android.content.Context
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ViewFlipper
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -100,3 +102,6 @@ fun ViewFlipper.addOnChangeListener(onChange: (Int) -> Unit) {
         }
     })
 }
+
+val ViewDataBinding.context: Context
+    get() = root.context
