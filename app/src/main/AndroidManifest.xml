@@ -29,6 +29,8 @@
 
         </activity>
 
+        <activity android:name=".clean.presentation.DetailsActivity" />
+
         <service
             android:name=".services.MessagingService"
             android:exported="false">

@@ -12,6 +12,9 @@ buildscript {
         classpath "io.realm:realm-gradle-plugin:$realm"
         classpath "com.google.gms:google-services:$gms_google_servivces"
         classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlytics_plugin"
+
+        def nav_version = "2.3.5"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 
