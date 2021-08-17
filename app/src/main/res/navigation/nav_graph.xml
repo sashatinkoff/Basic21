@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/registerFragment">
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.isidroid.b21.clean.presentation.fragments.RegisterFragment"
+        android:label="RegisterFragment"
+        >
+
+        <action
+            android:id="@+id/action_registerFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment"
+            app:enterAnim="@animator/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:launchSingleTop="false" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="com.isidroid.b21.clean.presentation.fragments.BookListFragment"
+        android:label="BookListFragment">
+
+        <action
+            android:id="@+id/action_bookListFragment_to_detailsActivity"
+            app:destination="@id/detailsActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/detailsActivity"
+        android:name="com.isidroid.b21.clean.presentation.DetailsActivity"
+        android:label="DetailsActivity">
+        <argument
+            android:name="book"
+            app:argType="com.isidroid.b21.clean.presentation.Book" />
+    </activity>
+</navigation>
