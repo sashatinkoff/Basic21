@@ -3,69 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:navigationIcon="@drawable/abc_vector_test"
-                app:title="Page title" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="Just a tip to help you">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            app:cardElevation="8dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:padding="16dp"
-                android:text="Hello world"
-                android:textSize="20sp" />
-        </com.google.android.material.card.MaterialCardView>
+        <ImageView
+            android:id="@+id/preview"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="2dp"
+            app:elevation="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:id="@+id/buttonPick"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:text="Click me" />
+            android:text="Pick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonShoot"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonShoot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shoot"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPlayNetwork"
+            app:layout_constraintStart_toEndOf="@+id/buttonPick" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonPlayNetwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Network"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonShoot" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
