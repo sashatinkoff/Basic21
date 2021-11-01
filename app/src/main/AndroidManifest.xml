@@ -19,6 +19,7 @@
         <activity
             android:name=".clean.presentation.MainActivity"
             android:configChanges="orientation|keyboardHidden|uiMode"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

@@ -1,8 +1,8 @@
 ext {
     config = [
             minSdk          : 21,
-            targetSdk       : 29,
-            compiledSdk     : 29,
+            targetSdk       : 31,
+            compiledSdk     : 31,
             buildToolVersion: '30.0.0'
     ]
 
