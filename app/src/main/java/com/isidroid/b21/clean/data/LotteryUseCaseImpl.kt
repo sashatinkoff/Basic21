@@ -3,7 +3,7 @@ package com.isidroid.b21.clean.data
 import android.content.Context
 import com.isidroid.b21.clean.domain.LotteryRepository
 import com.isidroid.b21.clean.domain.LotteryUseCase
-import com.isidroid.b21.clean.repository.LotteryRepositoryImpl
+import com.isidroid.b21.models.dto.DoubleItem
 import com.isidroid.b21.models.dto.SingleItem
 import timber.log.Timber
 
@@ -29,4 +29,24 @@ class LotteryUseCaseImpl(
             results.second.sortedByDescending { it.counter }
         )
     }
+
+    override fun doubleStatistics(fileName: String): Pair<List<DoubleItem>, List<DoubleItem>> {
+        val lines = repository.readAssets(context, fileName).lines()
+        val results = Pair(
+            mutableListOf<DoubleItem>(),
+            mutableListOf<DoubleItem>()
+        )
+
+        repository.parseLines(lines).forEach { pair ->
+            repository.collectDouble(pair.first.sorted(), results.first)
+            repository.collectDouble(pair.second.sorted(), results.second)
+        }
+
+        return Pair(
+            results.first.sortedByDescending { it.counter },
+            results.second.sortedByDescending { it.counter }
+        )
+    }
+
+
 }

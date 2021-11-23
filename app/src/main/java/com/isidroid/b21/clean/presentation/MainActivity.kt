@@ -23,22 +23,27 @@ class MainActivity : BindActivity<ActivityMainBinding>(layoutRes = R.layout.acti
 
 
         viewModel.single()
+        viewModel.double()
     }
 
     override fun onCreateViewModel() {
         observe(viewModel.state) { state ->
             when (state) {
-                is MainViewModel.State.SingleStatistics ->
-                    onSingleStatistics(state.first, state.second)
+                is MainViewModel.State.Statistics ->
+                    onStatistics(state.name, state.first, state.second)
             }
         }
     }
 
-    private fun onSingleStatistics(first: List<StatisticDto>, second: List<StatisticDto>) {
-        print("Single statistic first block", true)
+    private fun onStatistics(
+        name: String,
+        first: List<StatisticDto>,
+        second: List<StatisticDto>
+    ) {
+        print("$name first block", true)
         first.forEach { print("$it") }
 
-        print("Single statistic second block", true)
+        print("$name second block", true)
         second.forEach { print("$it") }
     }
 
