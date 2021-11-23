@@ -43,6 +43,7 @@ abstract class CoroutineViewModel(
             onError?.invoke(e)
         }
     }
+
 }
 
 interface Cancellation {

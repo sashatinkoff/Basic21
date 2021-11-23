@@ -1,29 +1,32 @@
 package com.isidroid.b21.clean.presentation
 
-import com.google.android.gms.tasks.Tasks
-import com.google.firebase.messaging.FirebaseMessaging
+import androidx.lifecycle.MutableLiveData
+import com.isidroid.b21.clean.domain.LotteryUseCase
+import com.isidroid.b21.models.dto.StatisticDto
 import com.isidroid.b21.utils.CoroutineViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor() : CoroutineViewModel() {
-    private fun token() = with(FirebaseMessaging.getInstance().token) { Tasks.await(this) }//.take(12)
+class MainViewModel @Inject constructor(
+    private val lotteryUseCase: LotteryUseCase
+) : CoroutineViewModel() {
+    sealed class State {
+        data class SingleStatistics(val first: List<StatisticDto>, val second: List<StatisticDto>) :
+            State()
+    }
 
+    val state = MutableLiveData<State>()
 
-    fun recreate() = io(
+    fun single() = io(
         doWork = {
-//            FirebaseMessaging.getInstance().isAutoInitEnabled = false
-//            Timber.i("==> Current token isAutoInit=${FirebaseMessaging.getInstance().isAutoInitEnabled}")
-//            Timber.e(token())
-//
-////            FirebaseInstanceId.getInstance().deleteInstanceId()
-//
-//            with(FirebaseMessaging.getInstance().deleteToken()) { Tasks.await(this) }
-//                .also {
-//                    Timber.i("Deleted")
-//                }
-//
-//            Timber.i("==> Refreshed token")
-//            Timber.e(token())
-        }
+            val result = lotteryUseCase.singleStatistics("winners2.txt")
+
+            State.SingleStatistics(
+                first = result.first.take(4).map { it.statistic(result.first.size) },
+                second = result.second.take(4).map { it.statistic(result.second.size) }
+            )
+        },
+        onComplete = { state.value = it!! }
     )
+
 }

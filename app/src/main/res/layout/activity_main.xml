@@ -10,26 +10,32 @@
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    tools:background="#F00" />
-
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:navigationIcon="@drawable/ic_back" />
-            </FrameLayout>
+                    android:background="#ccc"
+                    app:title="Toolbar"
+                    app:titleTextAppearance="@style/AppToolbar.TitleAppearance" />
 
+                <include
+                    android:id="@+id/searchContainer"
+                    layout="@layout/item_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone" />
+
+            </FrameLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
 

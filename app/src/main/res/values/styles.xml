@@ -19,11 +19,21 @@
 
 
         <item name="android:windowTranslucentStatus">true</item>
-<!--        <item name="android:windowTranslucentNavigation">true</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
         <item name="android:statusBarColor">#80FF0000</item>
+
+        <item name="toolbarStyle">@style/AppToolbar</item>
     </style>
 
     <style name="FullScreenDialogStyle" parent="Theme.AppCompat.DayNight.Dialog" />
 
+    <style name="AppToolbar.TitleAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="AppToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:paddingEnd">10dp</item>
+    </style>
 
 </resources>
