@@ -9,7 +9,6 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${android_plugin}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "io.realm:realm-gradle-plugin:$realm"
         classpath "com.google.gms:google-services:$gms_google_servivces"
         classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlytics_plugin"
     }

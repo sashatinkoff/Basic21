@@ -5,7 +5,6 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.firebase.crashlytics'
     id 'com.google.gms.google-services'
-    id 'realm-android'
 }
 
 android {
@@ -91,8 +90,8 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // google
     implementation "androidx.core:core-ktx:$androidx_core"
@@ -114,24 +113,21 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
     // network
-    implementation "com.squareup.okio:okio:$okio"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+//    implementation "com.squareup.okio:okio:$okio"
+//    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+//    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+//    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
 
     // firebase
     implementation platform('com.google.firebase:firebase-bom:26.6.0')
     implementation "com.google.firebase:firebase-crashlytics-ktx"
-    implementation "com.google.firebase:firebase-messaging-ktx"
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // tools
     implementation "com.jakewharton.timber:timber:$timber"
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.github.bumptech.glide:glide:$glide"
-    implementation "com.github.chrisbanes:PhotoView:$photoview"
-    implementation "org.greenrobot:eventbus:$eventbus"
 
     kapt "com.github.bumptech.glide:compiler:$glide"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

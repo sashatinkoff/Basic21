@@ -17,21 +17,25 @@ class LotteryRepositoryImpl : LotteryRepository {
         Pair(first, last)
     }
 
-    override fun collectSingle(number: Int, data: MutableList<SingleItem>) {
-        if (!data.any { it.number == number }) data.add(SingleItem(number))
+    override fun collectSingle(number: Int, data: MutableList<SingleItem>, total: Int) {
+        if (!data.any { it.number == number }) data.add(SingleItem(number, total))
 
         val item = data.first { it.number == number }
         item.counter++
     }
 
-    override fun collectDouble(collection: List<Int>, data: MutableList<DoubleItem>) {
+    override fun collectDouble(collection: List<Int>, data: MutableList<DoubleItem>, total: Int) {
         val combinations = combinations(collection)
-        combinations.forEach { collectCombination(it, data) }
+        combinations.forEach { collectCombination(it, data, total) }
     }
 
-    override fun collectCombination(values: Pair<Int, Int>, data: MutableList<DoubleItem>) {
+    override fun collectCombination(
+        values: Pair<Int, Int>,
+        data: MutableList<DoubleItem>,
+        total: Int
+    ) {
         if (!data.any { it.number1 == values.first && it.number2 == values.second })
-            data.add(DoubleItem(values.first, values.second))
+            data.add(DoubleItem(values.first, values.second, total))
 
         val item = data.first { it.number1 == values.first && it.number2 == values.second }
         item.counter++

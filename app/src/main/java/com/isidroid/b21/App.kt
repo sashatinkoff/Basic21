@@ -9,8 +9,6 @@ import com.isidroid.b21.di.DaggerAppComponent
 import com.isidroid.b21.models.settings.Settings
 import com.isidroid.b21.utils.NotificationsChannels
 import com.isidroid.b21.utils.YDebugTree
-import io.realm.Realm
-import io.realm.RealmConfiguration
 import timber.log.Timber
 
 class App : Application() {
@@ -31,19 +29,8 @@ class App : Application() {
         Settings.init(this)
         NotificationsChannels(this)
 
-        createRealm()
     }
 
-    private fun createRealm() {
-        Realm.init(this)
-        val config = RealmConfiguration.Builder()
-            .name("database.realm")
-            .schemaVersion(1L)
-            .deleteRealmIfMigrationNeeded()
-
-        // config.migration(migration)
-        Realm.setDefaultConfiguration(config.build())
-    }
 }
 
 val Context.appComponent

@@ -2,6 +2,10 @@ package com.isidroid.b21.models.dto
 
 interface Item {
     var counter: Int
-    fun probability(total: Int): Float = counter.toFloat() / total.toFloat()
-    fun statistic(total: Int): StatisticDto
+    var total: Int
+
+    val probability
+        get() = counter.toFloat() / total.toFloat()
+
+    val statistic: StatisticDto
 }
