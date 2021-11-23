@@ -24,7 +24,7 @@ class MainActivity : BindActivity<ActivityMainBinding>(layoutRes = R.layout.acti
         val results1 = mutableListOf<Item>()
         val results2 = mutableListOf<Item>()
 
-        val text = assets.open("winners.txt").bufferedReader().use { it.readText() }
+        val text = assets.open("winners2.txt").bufferedReader().use { it.readText() }
         val lines = text.lines()
         lines.forEach { line ->
             val numbers = line.split(" ").map { it.toInt() }
